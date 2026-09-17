@@ -1,0 +1,203 @@
+
+
+@import "./tokens/primitives.css";
+@import "./tokens/semantic.css";
+@import "./tokens/typography.css";
+@import "./tokens/spacing.css";
+
+@theme inline {
+  --color-surface-base: var(--surface-base);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-active: var(--surface-active);
+
+  --color-border-strong: var(--border-strong);
+  --color-border-interactive: var(--border-interactive);
+  --color-border-hover: var(--border-hover);
+  --color-on-scrim: var(--on-scrim);
+  --color-on-scrim-muted: var(--on-scrim-muted);
+  --color-scrim-ink: var(--scrim-ink);
+  --color-on-scrim-action: var(--on-scrim-action);
+  --color-band-surface: var(--band-surface);
+  --color-band-deep: var(--band-deep);
+  --color-band-ink: var(--band-ink);
+  --color-band-muted: var(--band-muted);
+  --color-band-accent: var(--band-accent);
+  --color-band-line: var(--band-line);
+  --color-home-hero-surface: var(--home-hero-surface);
+  --color-home-concept-surface: var(--home-concept-surface);
+  --color-home-suite-surface: var(--home-suite-surface);
+  --color-home-gallery-surface: var(--home-gallery-surface);
+  --color-home-faq-surface: var(--home-faq-surface);
+  --color-home-location-surface: var(--home-location-surface);
+  --color-home-cta-surface: var(--home-cta-surface);
+  --color-home-cta-end: var(--home-cta-end);
+  --color-site-chrome-surface: var(--site-chrome-surface);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-wash: var(--brand-wash);
+  --color-on-brand: var(--on-brand);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-danger-hover: var(--danger-hover);
+  --color-danger-wash: var(--danger-wash);
+  --color-danger-border: var(--danger-border);
+  --color-danger-ink: var(--danger-ink);
+  --color-warning-wash: var(--warning-wash);
+  --color-warning-border: var(--warning-border);
+  --color-warning-ink: var(--warning-ink);
+  --color-success-wash: var(--success-wash);
+  --color-success-border: var(--success-border);
+  --color-success-ink: var(--success-ink);
+  --color-info: var(--info);
+  --color-info-wash: var(--info-wash);
+  --color-info-border: var(--info-border);
+  --color-info-ink: var(--info-ink);
+
+  --color-focus-ring: var(--focus-ring);
+
+  --text-display: var(--type-display);
+  --text-display--line-height: var(--type-display-lh);
+  --text-reservation: var(--type-reservation);
+  --text-reservation--line-height: var(--type-reservation-lh);
+  --text-h1: var(--type-h1);
+  --text-h1--line-height: var(--type-h1-lh);
+  --text-h2: var(--type-h2);
+  --text-h2--line-height: var(--type-h2-lh);
+  --text-h3: var(--type-h3);
+  --text-h3--line-height: var(--type-h3-lh);
+  --text-lead: var(--type-lead);
+  --text-lead--line-height: var(--type-lead-lh);
+  --text-body: var(--type-body);
+  --text-body--line-height: var(--type-body-lh);
+  --text-small: var(--type-small);
+  --text-small--line-height: var(--type-small-lh);
+  --text-label: var(--type-label);
+  --text-label--line-height: var(--type-label-lh);
+
+  --text-console-title: var(--type-console-title);
+  --text-console-title--line-height: var(--type-console-title-lh);
+  --text-console-body: var(--type-console-body);
+  --text-console-body--line-height: var(--type-console-body-lh);
+  --text-console-table: var(--type-console-table);
+  --text-console-table--line-height: var(--type-console-table-lh);
+  --text-console-label: var(--type-console-label);
+  --text-console-label--line-height: var(--type-console-label-lh);
+
+  --font-weight-regular: var(--weight-regular);
+  --font-weight-medium: var(--weight-medium);
+  --font-weight-bold: var(--weight-bold);
+
+  --tracking-display: var(--tracking-display);
+  --tracking-label: var(--tracking-label);
+  --tracking-headline: var(--tracking-headline);
+  --tracking-eyebrow: var(--tracking-eyebrow);
+  --tracking-kicker: var(--tracking-kicker);
+  --tracking-pill: var(--tracking-pill);
+
+  --font-display: var(--onsen-family-display);
+  --font-body: var(--onsen-family-body);
+  --font-data: var(--onsen-family-data);
+  --font-accent: var(--onsen-family-accent);
+
+  --size-tap: var(--tap-min);
+  --text-numeral: var(--type-numeral);
+  --text-numeral--line-height: var(--type-numeral-lh);
+
+  --text-headline: var(--type-headline);
+  --text-headline--line-height: var(--type-headline-lh);
+  --text-subhead: var(--type-subhead);
+  --text-subhead--line-height: var(--type-subhead-lh);
+  --text-control: var(--type-control);
+  --text-control--line-height: var(--type-control-lh);
+  --text-field-label: var(--type-field-label);
+  --text-field-label--line-height: var(--type-field-label-lh);
+  --text-option: var(--type-option);
+  --text-option--line-height: var(--type-option-lh);
+  --text-fine: var(--type-fine);
+  --text-fine--line-height: var(--type-fine-lh);
+  --text-micro: var(--type-micro);
+  --text-micro--line-height: var(--type-micro-lh);
+  --text-pill: var(--type-pill);
+  --text-pill--line-height: var(--type-pill-lh);
+  --text-tile-time: var(--type-tile-time);
+  --text-tile-time--line-height: var(--type-tile-time-lh);
+  --text-stat: var(--type-stat);
+  --text-stat--line-height: var(--type-stat-lh);
+
+  --breakpoint-xs: 420px;
+
+  --spacing-nav: var(--measure-nav-h);
+  --spacing-control: var(--control-h-touch);
+  --spacing-tap: var(--tap-min);
+  --spacing-console-header: var(--measure-console-header-h);
+  --spacing-console-row: var(--measure-console-row-h);
+  --spacing-console-panel: var(--measure-console-panel-h);
+  --spacing-console-tile: var(--measure-console-tile-h);
+  --spacing-dialog-close: var(--measure-dialog-close-clearance);
+  --spacing-dialog-max-h: var(--measure-dialog-max-h);
+  --spacing-dialog-scroll-h: var(--measure-dialog-scroll-h);
+  --spacing-icon-grid: var(--measure-icon-grid);
+  --spacing-addon-thumb: var(--measure-addon-thumb);
+  --spacing-summary-sheet: var(--measure-summary-sheet);
+  --spacing-price-line: var(--measure-price-line);
+  --spacing-day-cell: var(--measure-day-cell);
+  --spacing-timeline-hour: var(--measure-timeline-hour);
+  --spacing-timeline-label: var(--measure-timeline-label);
+  --spacing-timeline-lane: var(--measure-timeline-lane);
+  --spacing-timeline-axis: var(--measure-timeline-axis);
+  --spacing-times-scroll: var(--measure-times-scroll);
+  --spacing-button-tile: var(--measure-button-tile);
+  --spacing-editor-rail: var(--measure-editor-rail);
+  --spacing-preview-tab: var(--measure-preview-tab);
+  --spacing-hero-media: var(--measure-hero-media);
+  --spacing-nav-sheet: var(--measure-nav-sheet);
+  --spacing-home-bridge: var(--measure-home-bridge);
+  --spacing-concept-rail-viewport: var(--measure-concept-rail-viewport);
+  --spacing-concept-chapter-stage: var(--measure-concept-chapter-stage);
+  --spacing-difference-card: var(--measure-difference-card);
+  --spacing-lightbox: var(--measure-lightbox);
+  --spacing-booking-edge-w: var(--measure-booking-edge-w);
+  --spacing-booking-edge-h: var(--measure-booking-edge-h);
+  --spacing-reservation-min-h: var(--measure-reservation-min-h);
+  --spacing-reservation-action-w: var(--measure-reservation-action-w);
+  --spacing-reservation-action-h: var(--measure-reservation-action-h);
+  --spacing-suite-carousel: var(--measure-suite-carousel);
+  --spacing-suite-copy: var(--measure-suite-copy);
+  --spacing-suite-showcase: var(--measure-suite-showcase);
+
+  --container-tap: var(--tap-min);
+  --container-card-floating: var(--measure-card-floating);
+  --container-card-panel: var(--measure-card-panel);
+  --container-console: var(--measure-console);
+  --container-suite-drawer: var(--measure-suite-drawer);
+  --container-info-hint: var(--measure-info-hint);
+  --container-lead: var(--measure-lead);
+  --container-combo: var(--measure-combo);
+  --container-auth-card: var(--measure-auth-card);
+  --container-toggle: var(--measure-toggle);
+  --container-booking: var(--measure-booking);
+  --container-widget: var(--measure-widget);
+  --container-rail: var(--measure-rail);
+  --container-times-dialog: var(--measure-times-dialog);
+  --container-table-leads: var(--measure-table-leads);
+  --container-table-staff: var(--measure-table-staff);
+  --container-col-name: var(--measure-col-name);
+  --container-headline: var(--measure-headline);
+  --container-measure: var(--measure-measure);
+  --container-measure-wide: var(--measure-measure-wide);
+  --container-gallery-dialog: var(--measure-gallery-dialog);
+  --container-email-sheet: var(--measure-email-sheet);
+  --container-email-desktop: var(--measure-email-desktop);
+  --container-email-mobile: var(--measure-email-mobile);
+  --container-message-preview: var(--measure-message-preview);
+  --container-editor-rail: var(--measure-editor-rail);
+}

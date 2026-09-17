@@ -1,0 +1,20 @@
+begin;
+select plan(8);
+insert into public.staff (id, email, full_name, role, is_active)
+values ('e8000000-0000-4000-8000-000000000001', 'editor@example.test', 'Editor test', 'management', true);
+set local request.jwt.claims = '{"sub":"e8000000-0000-4000-8000-000000000001","email":"editor@example.test"}';
+set local role authenticated;
+select * from public.save_message_template_draft('waitlist_confirmation', '{"subject":[{"kind":"text","text":"Draft subject","bold":false,"italic":false,"underline":false}],"blocks":[],"delivery":{"channel":"email","isActive":false,"timingMinutes":30}}', 'Draft subject', null);
+select is((select is_active from public.message_templates where key = 'waitlist_confirmation'), true, '[§5.1] Saving a paused draft does not pause the live message');
+select is((select timing_minutes from public.message_templates where key = 'waitlist_confirmation'), null::integer, '[§5.1] Draft timing does not affect delivery');
+select * from public.publish_message_template('waitlist_confirmation');
+select is((select is_active from public.message_templates where key = 'waitlist_confirmation'), false, '[§12] Publish applies the activation setting');
+select is((select timing_minutes from public.message_templates where key = 'waitlist_confirmation'), 30, '[§12] Publish applies the timing setting');
+select is((select document -> 'subject' -> 0 ->> 'text' from public.message_templates where key = 'waitlist_confirmation'), 'Draft subject', '[§12] Wording changes in the same publication');
+select is((select draft_document from public.message_templates where key = 'waitlist_confirmation'), null::jsonb, '[§5.1] Publishing clears the draft');
+select * from public.save_message_template_draft('waitlist_confirmation', '{"blocks":[]}', 'Legacy draft', null);
+select * from public.publish_message_template('waitlist_confirmation');
+select is((select is_active from public.message_templates where key = 'waitlist_confirmation'), false, '[OUR CHOICE] Legacy drafts retain delivery activation');
+select is((select timing_minutes from public.message_templates where key = 'waitlist_confirmation'), 30, '[OUR CHOICE] Legacy drafts retain delivery timing');
+select * from finish();
+rollback;

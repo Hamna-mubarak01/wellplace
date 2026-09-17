@@ -1,0 +1,127 @@
+
+
+:root {
+  --font-display: var(--onsen-family-display);
+  --font-body: var(--onsen-family-body);
+  --font-data: var(--onsen-family-data);
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+
+  --tracking-display: -0.01em;
+  --tracking-label: 0.1em;
+  --tracking-headline: -0.015em;
+  --tracking-eyebrow: 0.2em;
+  --tracking-kicker: 0.22em;
+  --tracking-pill: 0.04em;
+
+  --type-display: 3.85rem;
+  --type-display-lh: 4rem;
+  --type-reservation: clamp(3.5rem, 6.4vw, 7.5rem);
+  --type-reservation-lh: 0.94;
+  --type-h1: 3rem;
+  --type-h1-lh: 3.5rem;
+  --type-h2: 1.875rem;
+  --type-h2-lh: 2.375rem;
+  --type-h3: 1.5rem;
+  --type-h3-lh: 2rem;
+  --type-lead: clamp(1rem, 2.2vh, 1.25rem);
+  --type-lead-lh: clamp(1.4375rem, 3.1vh, 1.8125rem);
+  --type-body: 1.0625rem;
+  --type-body-lh: 1.5625rem;
+  --type-small: 0.9375rem;
+  --type-small-lh: 1.375rem;
+  --type-label: 0.75rem;
+  --type-label-lh: 1rem;
+
+  --type-console-title: 1.375rem;
+  --type-console-title-lh: 1.875rem;
+  --type-console-body: 0.9375rem;
+  --type-console-body-lh: 1.375rem;
+  --type-console-table: 0.875rem;
+  --type-console-table-lh: 1.25rem;
+  --type-console-label: 0.75rem;
+  --type-console-label-lh: 1rem;
+
+  --type-numeral: clamp(7rem, 34vw, 24rem);
+  --type-numeral-lh: 0.82;
+
+  --type-headline: clamp(1.5625rem, 4.4vw, 3.25rem);
+  --type-headline-lh: 1.04;
+  --type-subhead: clamp(1.75rem, 3.2vw, 2.25rem);
+  --type-subhead-lh: 1.08;
+
+  --type-control: 1rem;
+  --type-control-lh: 1;
+  --type-field-label: 0.84375rem;
+  --type-field-label-lh: 1.2;
+  --type-option: 0.9375rem;
+  --type-option-lh: 1.4;
+  --type-fine: 0.875rem;
+  --type-fine-lh: 1.5;
+  --type-micro: 0.78125rem;
+  --type-micro-lh: 1.55;
+  --type-pill: 0.6875rem;
+  --type-pill-lh: 1.2;
+
+  --type-tile-time: 1.5rem;
+  --type-tile-time-lh: 1.75rem;
+
+  --type-stat: clamp(var(--type-body), 12.5cqi, var(--type-h2));
+  --type-stat-lh: 1.1;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --type-display: 2.375rem;
+    --type-display-lh: 2.5rem;
+    --type-h1: 2rem;
+    --type-h1-lh: 2.5rem;
+    --type-h2: 1.5rem;
+    --type-h2-lh: 1.875rem;
+
+    --type-tile-time: 1.375rem;
+    --type-tile-time-lh: 1.625rem;
+  }
+}
+
+.density-editorial {
+  font-family: var(--font-body);
+  font-size: var(--type-body);
+  line-height: var(--type-body-lh);
+  font-weight: var(--weight-regular);
+}
+
+.density-console {
+  font-family: var(--font-body);
+  font-size: var(--type-console-body);
+  line-height: var(--type-console-body-lh);
+  font-weight: var(--weight-regular);
+}
+
+.font-data,
+.density-console table {
+  font-variant-numeric: tabular-nums;
+}
+
+@layer base {
+  em,
+  i {
+    font-style: normal;
+    font-weight: var(--weight-medium);
+  }
+
+  .font-display {
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-headline);
+  }
+}
+
+@media (width >= 64rem) {
+  :root {
+    --type-headline: clamp(1.9375rem, min(4.4vw, 5.2vh), 3.25rem);
+    --type-lead: clamp(1.0625rem, 2.3vh, 1.25rem);
+    --type-lead-lh: clamp(1.5rem, 3.2vh, 1.8125rem);
+  }
+}

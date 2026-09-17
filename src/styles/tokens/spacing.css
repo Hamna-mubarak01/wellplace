@@ -1,0 +1,288 @@
+:root {
+   --measure-settings-panel: 48rem;
+   --measure-suite-drawer: 40rem;
+
+   --radius-inner: 4px;
+   --radius-control: 6px;
+   --radius-button: 10px;
+   --radius-card: 10px;
+   --radius-modal: 14px;
+   --radius-band: clamp(22px, 3vw, 44px);
+   --measure-map-cell: 44px;
+   --measure-bento-row: 11rem;
+   --measure-bento-row-lg: 12.5rem;
+   --measure-headline: 16ch;
+   --measure-measure: 42ch;
+   --measure-measure-wide: 60ch;
+   --measure-hero-media: 52svh;
+   --measure-nav-sheet: min(20rem, 85vw);
+   --measure-home-bridge: clamp(18rem, 38svh, 26rem);
+   --measure-concept-hero-stage: 125svh;
+   --space-concept-hero-copy-shift: 2rem;
+   --space-concept-copy-shift: 1rem;
+   --space-concept-reveal-blur: 0.375rem;
+   --motion-concept-hero-scale: 1.04;
+   --motion-concept-chapter-scale: 1.08;
+   --motion-concept-chapter-shift: 4%;
+   --space-suite-stack-top: clamp(6rem, 15svh, 7.5rem);
+   --space-suite-stack-top-lg: clamp(8rem, 18svh, 11rem);
+   --measure-suite-card-media: clamp(13rem, 42svh, 22rem);
+   --measure-suite-card-media-lg: clamp(13rem, 52svh, 34rem);
+   --space-concept-word-mask: 0.16em;
+   --measure-concept-rail-w: 2px;
+   --measure-concept-rail-marker: 1.125rem;
+   --measure-concept-rail-dot: 0.5rem;
+   --measure-concept-rail-viewport: calc(100svh - var(--measure-nav-h));
+   --measure-concept-chapter-stage: 220svh;
+   --measure-suite-fan-card-h: clamp(18rem, calc(100svh - var(--measure-nav-h) - 23rem), 30rem);
+   --measure-suite-fan-media-min: 28%;
+   --measure-suite-circuit: clamp(17rem, 82vw, 27rem);
+   --measure-suite-circuit-node: clamp(3rem, 13vw, 4rem);
+   --motion-suite-circuit-step: 900ms;
+   --today-timer-grain-opacity: 0.3;
+   --measure-suite-fan-card: min(78vw, calc(var(--measure-suite-fan-card-h) * 0.82), 26rem);
+   --space-suite-fan-step: calc(var(--measure-suite-fan-card) * 0.5);
+   --space-suite-fan-drop: calc(var(--measure-suite-fan-card-h) * 0.02);
+   --angle-suite-fan-step: 4.5deg;
+   --motion-suite-fan-duration: 650ms;
+   --scale-suite-fan-center: 1;
+   --measure-difference-card: clamp(27.5rem, 30vw, 28.5rem);
+   --measure-difference-numeral: clamp(6.5rem, 11vw, 9.5rem);
+   --measure-difference-title: calc(var(--type-h2-lh) * 2);
+   --measure-gallery-stage: 165svh;
+   --measure-gallery-overlap: 65svh;
+   --motion-gallery-depth-duration: 450ms;
+   --motion-gallery-deck-ease: cubic-bezier(0.22, 1, 0.36, 1);
+   /* [§Owner gallery sizing correction, 15 Sep] Images fill the former controls area. */
+   --measure-gallery-deck: clamp(18rem, 42vw, 35rem);
+   --measure-gallery-deck-card: 84%;
+   --measure-gallery-deck-card-height: 94%;
+   --space-gallery-deck-step: 11%;
+   --scale-gallery-deck-step: 0.14;
+   --opacity-gallery-deck-step: 0.24;
+   --measure-lightbox: calc(100svh - 1rem);
+   --measure-gallery-dialog: calc(100vw - 1rem);
+   --space-gallery-lightbox-inset: clamp(0.5rem, 1.25vw, 1.25rem);
+   --measure-booking-edge-w: clamp(3.5rem, 4.2vw, 5rem);
+   --space-home-mobile-inline: 1rem;
+   --space-booking-edge-clearance: 0.5rem;
+   --blur-booking-edge-glass: 0.75rem;
+   --measure-booking-edge-h: clamp(14rem, 40svh, 27rem);
+   --measure-booking-edge-media-h: 32%;
+   --measure-booking-edge-corner: 0.75rem;
+   --space-booking-edge-corner: 0.75rem;
+   --space-booking-edge-body: 1rem 0.75rem;
+   --type-booking-edge-label: clamp(0.875rem, min(1.25vw, 2svh), 1.125rem);
+   --motion-booking-edge-enter-duration: 760ms;
+   --motion-booking-edge-enter-ease: cubic-bezier(0.16, 1, 0.3, 1);
+   --motion-booking-edge-fade-duration: 220ms;
+   --measure-reservation-min-h: clamp(30rem, 72svh, 36rem);
+   --measure-cta-min-h: clamp(22rem, 52svh, 27rem);
+   --measure-reservation-action-w: 16rem;
+   --measure-reservation-action-h: 4.5rem;
+   --measure-suite-carousel: clamp(13rem, min(66vw, 28svh), 18rem);
+   --measure-suite-copy: 25rem;
+   --measure-suite-showcase: clamp(34rem, 38vw, 39rem);
+   --motion-card-perspective: 800px;
+   --motion-card-flip-duration: 550ms;
+   --motion-card-flip-ease: cubic-bezier(0.76, 0, 0.24, 1);
+   --measure-card-flip-reduced: 18rem;
+   --space-card-flip-stack: 1.5rem;
+   --space-card-flip-clearance: 6rem;
+   --space-difference-mobile-clearance: clamp(2.5rem, 8vw, 4rem);
+   --motion-difference-mobile-perspective: 1600px;
+   --measure-booking-loading-progress: clamp(10rem, 26vw, 16rem);
+   --measure-booking-loading-progress-line: 0.125rem;
+   --motion-booking-loading-content-duration: 180ms;
+   --motion-booking-loading-name-duration: 520ms;
+   --motion-booking-loading-progress-duration: 520ms;
+   --motion-booking-loading-progress-delay: 120ms;
+   --motion-booking-loading-ease: cubic-bezier(0.22, 1, 0.36, 1);
+   --tap-min: 44px;
+
+   --space-button-gap: 0.5rem;
+   --space-button-inline-sm: 1rem;
+   --space-button-inline: 1.25rem;
+   --space-button-inline-lg: 1.5rem;
+   --motion-button-duration: 150ms;
+  --button-press-fill-share: 84%;
+   --motion-button-ease: ease-out;
+   --motion-mobile-menu-duration: 560ms;
+   --motion-mobile-menu-item-duration: 440ms;
+   --motion-mobile-menu-item-delay: 180ms;
+   --motion-mobile-menu-ease: cubic-bezier(0.22, 1, 0.36, 1);
+   --measure-theme-switch-w: 4.75rem;
+   --measure-theme-switch-thumb: 2.375rem;
+   --measure-theme-switch-travel: 2rem;
+   --space-theme-switch-inset: 0.1875rem;
+   --measure-theme-switch-nav-h: 2rem;
+   --measure-theme-switch-nav-w: calc(var(--measure-theme-switch-nav-h) * 2);
+   --measure-theme-switch-nav-thumb: var(--measure-theme-switch-nav-h);
+   --measure-theme-switch-nav-travel: var(--measure-theme-switch-nav-h);
+   --measure-theme-switch-nav-icon: var(--type-label-lh);
+   --space-theme-switch-nav-inset: 0rem;
+   --space-home-nav-top: 0.5rem;
+   --space-nav-control-gap: 0.5rem;
+   --space-nav-link-inline: 1rem;
+   --space-nav-action-gap: 0.75rem;
+
+   --control-h-console: var(--tap-min);
+   --measure-filter-select: 12rem;
+   --measure-filter-range: 19rem;
+   --measure-dialog-action: 8.5rem;
+   --measure-page-action: 12.5rem;
+   --measure-filter-popover: min(20rem, calc(100vw - 2rem));
+   --measure-meta-dot: 1rem;
+
+   --measure-console: 90rem;
+   --measure-console-header-h: 56px;
+   --measure-console-row-h: 64px;
+   --measure-console-panel-h: 168px;
+   --measure-console-tile-h: 112px;
+   --measure-console-sidebar-icon: calc(var(--tap-min) + 1rem + 1px);
+
+   --measure-dialog-close-clearance: 2.25rem;
+   --measure-info-hint: 20rem;
+   --measure-dialog-max-h: 85dvh;
+   --measure-suite-activity-h: 240px;
+   --measure-dialog-scroll-h: 60svh;
+   --measure-icon-grid: 11rem;
+   --measure-addon-thumb: 5.5rem;
+   --control-h-touch: clamp(46px, 5.6vh, 52px);
+
+   --measure-card-floating: 520px;
+   --measure-toast: 23.75rem;
+   --measure-card-panel: 596px;
+   --measure-nav-h: clamp(46px, 8vh, 66px);
+   --measure-wordmark-h: clamp(40px, 6.5vh, 52px);
+   --measure-lead: 38ch;
+   --measure-lead-lg: 58ch;
+   --measure-combo: 324px;
+   --measure-auth-card: 27rem;
+   --measure-duration: 5.75rem;
+   --measure-price-line: 1.125rem;
+   --space-safe-bottom: max(0.75rem, env(safe-area-inset-bottom));
+   --measure-widget: 68rem;
+   --measure-rail: 20rem;
+
+   --measure-day-cell: 3rem;
+   --measure-reception-timeline-min: 48rem;
+   --measure-reception-portrait-lane: 4.5rem;
+   --measure-reception-aside: 21rem;
+   --measure-reception-stripe: 0.25rem;
+   --measure-timeline-hour: 3rem;
+   --measure-timeline-hour-wide: 11rem;
+   --measure-timeline-label: 10rem;
+   --measure-timeline-lane: 3.5rem;
+   --measure-timeline-row: calc(var(--measure-timeline-lane) + 1px);
+   --measure-timeline-axis: 2rem;
+   --measure-timeline-now: 2px;
+   --measure-times-dialog: 52rem;
+   --measure-times-scroll: 55dvh;
+
+   --measure-toggle: 15rem;
+   --measure-summary-sheet: 58dvh;
+   --measure-booking: 76rem;
+   --measure-table-leads: 62rem;
+   --measure-table-staff: 46rem;
+   --measure-col-name: 22rem;
+
+   --space-nav-inline: clamp(1.125rem, 4vw, 2.5rem);
+   --space-split-nav-block: clamp(1.25rem, 3vh, 2rem);
+   --space-panel-inline: clamp(1.75rem, 6vw, 4.5rem);
+   --space-panel-top: clamp(0.75rem, min(7vw, 2vh), 3.5rem);
+   --space-panel-bottom: clamp(0.75rem, min(8vw, 2.4vh), 4rem);
+   --space-panel-top-lg: clamp(0.75rem, 3.2vh, 3.75rem);
+   --space-panel-align-lg: 26px;
+
+   --space-toggle-align: 31px;
+   --space-panel-bottom-lg: clamp(1rem, 3.2vh, 4.5rem);
+
+   --space-card-pad: clamp(0.875rem, min(6vw, 2.6vh), 2.5rem);
+   --space-field-gap: clamp(0.5625rem, 1.45vh, 1.25rem);
+   --space-consent-gap: clamp(0.3125rem, 0.9vh, 0.625rem);
+   --space-heading-gap: clamp(0.625rem, 1.8vh, 1.25rem);
+}
+
+@media (width < 48rem) {
+   :root {
+      --measure-theme-switch-nav-h: 1.875rem;
+      --measure-booking-edge-w: var(--tap-min);
+      --measure-booking-edge-h: 9.5rem;
+      --measure-booking-edge-media-h: 24%;
+      --measure-booking-edge-corner: 0.5rem;
+      --space-booking-edge-corner: 0.5rem;
+      --space-booking-edge-body: 0.625rem 0.375rem;
+      --type-booking-edge-label: 0.6875rem;
+   }
+}
+
+@media (width < 26.25rem), (height < 32rem) {
+   :root {
+      --measure-theme-switch-nav-h: 1.75rem;
+      --measure-booking-edge-w: var(--tap-min);
+      --measure-booking-edge-h: 9.5rem;
+      --measure-booking-edge-media-h: 24%;
+      --measure-booking-edge-corner: 0.375rem;
+      --space-booking-edge-corner: 0.375rem;
+      --space-booking-edge-body: 0.5rem 0.25rem;
+      --type-booking-edge-label: 0.625rem;
+   }
+}
+
+@media (width >=64rem) {
+   :root {
+      --measure-day-cell: 3.25rem;
+      --measure-wordmark-h: clamp(48px, 8vh, 64px);
+      --measure-lead: var(--measure-lead-lg);
+      --space-heading-gap: clamp(0.875rem, 2.4vh, 2rem);
+   }
+}
+
+@media (width >=48rem) {
+   :root {
+      --measure-gallery-deck-card: 78%;
+      --measure-gallery-stage: 160svh;
+      --measure-gallery-overlap: 60svh;
+      --measure-reservation-min-h: clamp(36rem, 63svh, 43rem);
+      --measure-cta-min-h: clamp(24rem, 46svh, 30rem);
+      --measure-suite-carousel: clamp(22rem, 70vw, 30rem);
+   }
+}
+
+@media (width >=64rem) {
+   :root {
+      --measure-gallery-stage: 185svh;
+      --measure-gallery-overlap: 85svh;
+      --scale-suite-fan-center: 1.08;
+      --measure-suite-fan-card-h: clamp(19rem, calc((100svh - var(--measure-nav-h) - 21rem) / 1.08), 34rem);
+      --space-suite-fan-step: calc(var(--measure-suite-fan-card) * 0.74);
+   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+   :root {
+      --measure-concept-hero-stage: 100svh;
+      --measure-gallery-stage: 100svh;
+      --measure-gallery-overlap: 6rem;
+   }
+}
+
+:root {
+  --measure-email-sheet: 40rem;
+  --measure-email-desktop: 40rem;
+  --measure-email-mobile: 23.4375rem;
+  --measure-editor-rail: 20rem;
+  --measure-message-preview: calc(100vw - 2rem);
+  --measure-message-preview-content: 100cqw;
+  --measure-button-tile: 4.5rem;
+  --measure-preview-tab: 8.5rem;
+}
+
+:root {
+  --measure-period-suite-label: 7rem;
+  --measure-period-day: 7rem;
+  --measure-reception-lane-compact: 4rem;
+  --measure-reception-lane-wide: 5rem;
+  --measure-reception-track-min: 44rem;
+}

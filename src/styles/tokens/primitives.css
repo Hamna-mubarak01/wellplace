@@ -1,0 +1,101 @@
+
+
+:root {
+  --onsen-sand-50: #fbf6ee;
+  --onsen-sand-100: #f7f2ea;
+  --onsen-sand-200: #f0e9de;
+  --onsen-sand-300: #e9dcc5;
+  --onsen-sand-400: #e3d9ca;
+  --onsen-sand-500: #d8ccb9;
+  --onsen-sand-600: #b9aa92;
+  --onsen-sand-700: #8b7e6c;
+  --onsen-sand-800: #5c5042;
+  --onsen-sand-900: #2a2118;
+
+  --onsen-umber-50: #efe7da;
+  --onsen-umber-100: #b6a894;
+  --onsen-umber-200: #857868;
+  --onsen-umber-300: #4a3e30;
+  --onsen-umber-350: #322a20;
+  --onsen-umber-325: #3d3327;
+  --onsen-umber-400: #322920;
+  --onsen-umber-500: #261d11;
+  --onsen-umber-600: #241d16;
+  --onsen-umber-700: #1a1510;
+  --onsen-umber-800: #1a1204;
+  --onsen-umber-900: #120e0a;
+
+  --onsen-brass-400: #e3bc83;
+  --onsen-brass-500: #d4a868;
+  --onsen-brass-700: #8f6529;
+  --onsen-brass-800: #74501e;
+
+  --onsen-pine-50: #e3ece6;
+  --onsen-pine-100: #cde2d5;
+  --onsen-pine-200: #b3cdbe;
+  --onsen-pine-300: #7fb89a;
+  --onsen-pine-600: #2f6b4f;
+  --onsen-pine-700: #275842;
+  --onsen-pine-800: #24382d;
+  --onsen-pine-900: #16241c;
+
+  --onsen-amber-50: #f2e7ce;
+  --onsen-amber-100: #dcbb7c;
+  --onsen-amber-200: #d5bc8a;
+  --onsen-amber-300: #d3a868;
+  --onsen-amber-600: #8a6420;
+  --onsen-amber-700: #6e4e14;
+  --onsen-amber-800: #4e3b1c;
+  --onsen-amber-900: #2a2011;
+
+  --onsen-slate-50: #e6ecf3;
+  --onsen-slate-100: #cdddec;
+  --onsen-slate-200: #b0c4d8;
+  --onsen-slate-300: #8fb3d2;
+  --onsen-slate-600: #3a5f83;
+  --onsen-slate-700: #2f4e6c;
+  --onsen-slate-800: #24323f;
+  --onsen-slate-900: #141d26;
+
+  --onsen-clay-50: #f3dfd9;
+  --onsen-clay-100: #e5a79e;
+  --onsen-clay-200: #d3ada3;
+  --onsen-clay-300: #dc8f84;
+  --onsen-clay-600: #93463c;
+  --onsen-clay-700: #7c382f;
+  --onsen-clay-800: #523029;
+  --onsen-clay-900: #2e1a16;
+
+
+  --onsen-logo-ink: #0b0b0b;
+  --onsen-logo-snow: #ffffff;
+
+  --onsen-ink-light: 42 33 24;
+  --onsen-ink-dark: 10 7 4;
+
+  --onsen-family-display: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --onsen-family-body: var(--font-public-sans), "Helvetica Neue", Helvetica, system-ui, sans-serif;
+  --onsen-family-data: var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  --onsen-family-accent: var(--font-cormorant-garamond), var(--font-newsreader), Georgia, serif;
+
+  --onsen-sand-75: #f9f4ec;
+  --onsen-sand-150: #f4eee4;
+  --onsen-sand-250: #ece4d5;
+  --onsen-sand-750: #685e51;
+  --onsen-sand-650: #8c795a;
+  --onsen-brass-750: #7e5924;
+  --onsen-amber-650: #7c5a1d;
+  --onsen-umber-150: #ab9d8a;
+  --onsen-umber-250: #96826b;
+  --onsen-umber-450: #2b2213;
+  --onsen-umber-750: #1f1913;
+  --onsen-umber-925: #15100a;
+  --onsen-umber-950: #0f0b05;
+  --onsen-umber-1000: #0a0704;
+
+  --onsen-scrim-rgb: 20 14 7;
+  --onsen-on-scrim-rgb: 247 242 234;
+  --onsen-scrim-ink: #140e07;
+  --onsen-on-scrim: #f7f2ea;
+  --onsen-on-scrim-muted: #f0e4cf;
+}

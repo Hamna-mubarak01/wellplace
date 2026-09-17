@@ -1,0 +1,298 @@
+
+
+:root {
+  --surface-base: var(--onsen-sand-200);
+  --surface-raised: var(--onsen-sand-100);
+  --surface-sunken: var(--onsen-sand-400);
+  --surface-notice: var(--onsen-sand-50);
+
+  --border: var(--onsen-sand-500);
+  --border-strong: var(--onsen-sand-600);
+
+  --border-interactive: var(--onsen-sand-650);
+
+  --text-primary: var(--onsen-sand-900);
+  --text-secondary: var(--onsen-sand-800);
+  --text-muted: var(--onsen-sand-750);
+
+  --brand: var(--onsen-brass-750);
+  --brand-hover: var(--onsen-brass-800);
+  --brand-wash: var(--onsen-sand-300);
+  --on-brand: var(--onsen-sand-50);
+
+  --surface-hover: var(--onsen-sand-300);
+  --surface-active: var(--onsen-sand-400);
+  --border-hover: var(--onsen-sand-600);
+  --border-interactive-hover: var(--onsen-sand-750);
+
+  --pulse-ring: color-mix(in srgb, var(--brand) 45%, transparent);
+
+  --success: var(--onsen-pine-600);
+  --warning: var(--onsen-amber-650);
+  --danger: var(--onsen-clay-600);
+
+  --danger-hover: var(--onsen-clay-700);
+
+  --danger-wash: var(--onsen-clay-50);
+  --danger-border: var(--onsen-clay-200);
+  --danger-ink: var(--onsen-clay-700);
+  --success-wash: var(--onsen-pine-50);
+  --success-border: var(--onsen-pine-200);
+  --success-ink: var(--onsen-pine-700);
+  --warning-wash: var(--onsen-amber-50);
+  --warning-border: var(--onsen-amber-200);
+  --warning-ink: var(--onsen-amber-700);
+  --info: var(--onsen-slate-600);
+  --info-wash: var(--onsen-slate-50);
+  --info-border: var(--onsen-slate-200);
+  --info-ink: var(--onsen-slate-700);
+
+  --shadow-ink: var(--onsen-ink-light);
+
+  --band-surface: var(--onsen-umber-450);
+  --band-deep: var(--onsen-umber-925);
+  --band-ink: var(--onsen-sand-100);
+  --band-muted: var(--onsen-sand-600);
+  --band-accent: var(--onsen-brass-400);
+  --band-line: color-mix(in srgb, var(--onsen-sand-100) 14%, transparent);
+  --band-action-fill: var(--brand-hover);
+  --band-action-hover-ink: var(--on-brand);
+  --band-scrim-fill: var(--brand-hover);
+  --band-scrim-hover-ink: var(--on-brand);
+  --suite-fan-side-brightness: 0.9;
+  --suite-fan-depth-brightness-step: 0.05;
+  --suite-fan-peek-brightness: 1;
+
+  --difference-scrim-base: 92%;
+  --difference-scrim-mid: 66%;
+  --difference-scrim-top: 26%;
+  --panel-surface: var(--onsen-sand-50);
+  --panel-deep: var(--onsen-sand-300);
+  --panel-ink: var(--onsen-sand-900);
+  --panel-muted: var(--onsen-sand-800);
+  --panel-accent: var(--onsen-brass-750);
+  --panel-line: var(--onsen-sand-500);
+
+  --home-hero-surface: var(--onsen-umber-1000);
+  --home-concept-surface: var(--onsen-sand-200);
+  --home-suite-surface: var(--onsen-sand-50);
+  --home-gallery-surface: var(--onsen-sand-75);
+  --home-faq-surface: var(--onsen-sand-150);
+  --home-location-surface: var(--onsen-sand-100);
+  --home-cta-surface: var(--onsen-sand-250);
+  --home-cta-end: var(--onsen-sand-400);
+  /* [§Owner reservation image correction, 15 Sep] Same dark image in both themes. */
+  --reservation-image-surface: var(--onsen-umber-950);
+  --reservation-image-end: var(--onsen-umber-500);
+  --site-chrome-surface: var(--onsen-umber-450);
+
+  --theme-switch-dark-track: var(--onsen-umber-450);
+  --theme-switch-light-track: var(--onsen-sand-500);
+  --theme-switch-thumb: var(--onsen-sand-50);
+  --theme-switch-dark-symbol: var(--onsen-umber-450);
+  --theme-switch-light-symbol: var(--onsen-brass-750);
+  --theme-switch-border: var(--onsen-brass-750);
+
+  --booking-edge-surface: color-mix(in srgb, var(--onsen-brass-700) 88%, transparent);
+  --booking-edge-hover: color-mix(in srgb, var(--onsen-brass-800) 92%, transparent);
+  --booking-edge-border: color-mix(in srgb, var(--onsen-sand-50) 28%, transparent);
+  --booking-edge-ink: var(--onsen-sand-50);
+  --booking-edge-media-tint: color-mix(in srgb, var(--onsen-brass-700) 34%, transparent);
+  --booking-edge-glass-surface: var(--onsen-brass-750);
+  --booking-edge-glass-ink: var(--booking-edge-ink);
+  --booking-edge-glass-border: var(--booking-edge-border);
+  --booking-edge-glass-opacity: 92%;
+
+  --scrim-rgb: var(--onsen-scrim-rgb);
+  --on-scrim-rgb: var(--onsen-on-scrim-rgb);
+  --on-scrim: var(--onsen-on-scrim);
+  --scrim-ink: var(--onsen-scrim-ink);
+  --on-scrim-muted: var(--onsen-on-scrim-muted);
+  --on-scrim-action: var(--onsen-sand-900);
+
+  --shadow-sm: 0 1px 2px 0 rgb(var(--shadow-ink) / 0.06),
+    0 1px 1px -1px rgb(var(--shadow-ink) / 0.04);
+  --shadow-md: 0 24px 48px -12px rgb(var(--shadow-ink) / 0.32),
+    0 8px 20px -8px rgb(var(--shadow-ink) / 0.18);
+  --shadow-lg: 0 40px 80px -24px rgb(var(--shadow-ink) / 0.40),
+    0 16px 32px -12px rgb(var(--shadow-ink) / 0.22);
+  --shadow-card-hover: 0 10px 24px -14px rgb(var(--shadow-ink) / 0.30),
+    0 2px 6px -2px rgb(var(--shadow-ink) / 0.12);
+
+  --focus-ring: var(--brand);
+
+  --logo-ink: var(--onsen-logo-ink);
+  --logo-snow: var(--onsen-logo-snow);
+}
+
+:root[data-theme="dark"] {
+  --surface-base: var(--onsen-umber-700);
+  --surface-raised: var(--onsen-umber-600);
+  --surface-sunken: var(--onsen-umber-900);
+  --surface-notice: var(--onsen-umber-600);
+
+  --border: var(--onsen-umber-400);
+  --border-strong: var(--onsen-umber-300);
+  --border-interactive: var(--onsen-umber-250);
+
+  --text-primary: var(--onsen-umber-50);
+  --text-secondary: var(--onsen-umber-100);
+  --text-muted: var(--onsen-umber-150);
+
+  --brand: var(--onsen-brass-500);
+  --brand-hover: var(--onsen-brass-400);
+  --brand-wash: var(--onsen-umber-500);
+  --on-brand: var(--onsen-umber-800);
+
+  --surface-hover: var(--onsen-umber-350);
+  --surface-active: var(--onsen-umber-325);
+  --border-hover: var(--onsen-umber-200);
+  --border-interactive-hover: var(--onsen-umber-150);
+
+  --success: var(--onsen-pine-300);
+  --warning: var(--onsen-amber-300);
+  --danger: var(--onsen-clay-300);
+
+  --danger-hover: var(--onsen-clay-100);
+
+  --danger-wash: var(--onsen-clay-900);
+  --danger-border: var(--onsen-clay-800);
+  --danger-ink: var(--onsen-clay-100);
+  --success-wash: var(--onsen-pine-900);
+  --success-border: var(--onsen-pine-800);
+  --success-ink: var(--onsen-pine-100);
+  --warning-wash: var(--onsen-amber-900);
+  --warning-border: var(--onsen-amber-800);
+  --warning-ink: var(--onsen-amber-100);
+  --info: var(--onsen-slate-300);
+  --info-wash: var(--onsen-slate-900);
+  --info-border: var(--onsen-slate-800);
+  --info-ink: var(--onsen-slate-100);
+
+  --shadow-ink: var(--onsen-ink-dark);
+
+  --band-surface: var(--onsen-umber-950);
+  --band-deep: var(--onsen-umber-1000);
+  --band-ink: var(--onsen-umber-50);
+  --band-muted: var(--onsen-umber-150);
+  --band-accent: var(--onsen-brass-500);
+  --band-line: color-mix(in srgb, var(--onsen-umber-50) 10%, transparent);
+  --band-action-fill: var(--band-accent);
+  --band-action-hover-ink: var(--band-deep);
+  --band-scrim-fill: var(--band-ink);
+  --band-scrim-hover-ink: var(--band-deep);
+  --suite-fan-side-brightness: 0.58;
+  --suite-fan-depth-brightness-step: 0.07;
+  --suite-fan-peek-brightness: 0.85;
+
+  --difference-scrim-base: 97%;
+  --difference-scrim-mid: 82%;
+  --difference-scrim-top: 60%;
+  --panel-surface: var(--onsen-umber-950);
+  --panel-deep: var(--onsen-umber-1000);
+  --panel-ink: var(--onsen-umber-50);
+  --panel-muted: var(--onsen-umber-150);
+  --panel-accent: var(--onsen-brass-500);
+  --panel-line: color-mix(in srgb, var(--onsen-umber-50) 10%, transparent);
+
+  --home-hero-surface: var(--onsen-umber-1000);
+  --home-concept-surface: var(--onsen-umber-925);
+  --home-suite-surface: var(--onsen-umber-600);
+  --home-gallery-surface: var(--onsen-umber-900);
+  --home-faq-surface: var(--onsen-umber-800);
+  --home-location-surface: var(--onsen-umber-750);
+  --home-cta-surface: var(--onsen-umber-950);
+  --home-cta-end: var(--onsen-umber-500);
+  --site-chrome-surface: var(--onsen-umber-700);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --surface-base: var(--onsen-umber-700);
+    --surface-raised: var(--onsen-umber-600);
+    --surface-sunken: var(--onsen-umber-900);
+    --surface-notice: var(--onsen-umber-600);
+
+    --border: var(--onsen-umber-400);
+    --border-strong: var(--onsen-umber-300);
+  --border-interactive: var(--onsen-umber-250);
+
+    --text-primary: var(--onsen-umber-50);
+    --text-secondary: var(--onsen-umber-100);
+    --text-muted: var(--onsen-umber-150);
+
+    --brand: var(--onsen-brass-500);
+    --brand-hover: var(--onsen-brass-400);
+    --brand-wash: var(--onsen-umber-500);
+    --on-brand: var(--onsen-umber-800);
+
+    --surface-hover: var(--onsen-umber-350);
+    --surface-active: var(--onsen-umber-325);
+    --border-hover: var(--onsen-umber-200);
+    --border-interactive-hover: var(--onsen-umber-150);
+
+    --success: var(--onsen-pine-300);
+    --warning: var(--onsen-amber-300);
+    --danger: var(--onsen-clay-300);
+
+    --danger-hover: var(--onsen-clay-100);
+
+    --danger-wash: var(--onsen-clay-900);
+    --danger-border: var(--onsen-clay-800);
+    --danger-ink: var(--onsen-clay-100);
+    --success-wash: var(--onsen-pine-900);
+    --success-border: var(--onsen-pine-800);
+    --success-ink: var(--onsen-pine-100);
+    --warning-wash: var(--onsen-amber-900);
+    --warning-border: var(--onsen-amber-800);
+    --warning-ink: var(--onsen-amber-100);
+    --info: var(--onsen-slate-300);
+    --info-wash: var(--onsen-slate-900);
+    --info-border: var(--onsen-slate-800);
+    --info-ink: var(--onsen-slate-100);
+
+    --shadow-ink: var(--onsen-ink-dark);
+    --band-surface: var(--onsen-umber-950);
+    --band-deep: var(--onsen-umber-1000);
+    --band-ink: var(--onsen-umber-50);
+    --band-muted: var(--onsen-umber-150);
+    --band-accent: var(--onsen-brass-500);
+    --band-line: color-mix(in srgb, var(--onsen-umber-50) 10%, transparent);
+    --band-action-fill: var(--band-accent);
+    --band-action-hover-ink: var(--band-deep);
+    --band-scrim-fill: var(--band-ink);
+    --band-scrim-hover-ink: var(--band-deep);
+    --suite-fan-side-brightness: 0.58;
+    --suite-fan-depth-brightness-step: 0.07;
+    --suite-fan-peek-brightness: 0.85;
+
+  --difference-scrim-base: 97%;
+  --difference-scrim-mid: 82%;
+  --difference-scrim-top: 60%;
+  --panel-surface: var(--onsen-umber-950);
+  --panel-deep: var(--onsen-umber-1000);
+  --panel-ink: var(--onsen-umber-50);
+  --panel-muted: var(--onsen-umber-150);
+  --panel-accent: var(--onsen-brass-500);
+  --panel-line: color-mix(in srgb, var(--onsen-umber-50) 10%, transparent);
+
+    --home-hero-surface: var(--onsen-umber-1000);
+    --home-concept-surface: var(--onsen-umber-925);
+    --home-suite-surface: var(--onsen-umber-600);
+    --home-gallery-surface: var(--onsen-umber-900);
+    --home-faq-surface: var(--onsen-umber-800);
+    --home-location-surface: var(--onsen-umber-750);
+    --home-cta-surface: var(--onsen-umber-950);
+    --home-cta-end: var(--onsen-umber-500);
+    --site-chrome-surface: var(--onsen-umber-700);
+  }
+}
+
+.band-panel {
+  --band-surface: var(--panel-surface);
+  --band-deep: var(--panel-deep);
+  --band-ink: var(--panel-ink);
+  --band-muted: var(--panel-muted);
+  --band-accent: var(--panel-accent);
+  --band-line: var(--panel-line);
+}

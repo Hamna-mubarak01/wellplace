@@ -1,0 +1,34 @@
+begin;
+select plan(13);
+insert into public.staff (id, email, full_name, role) values
+ ('fa111111-1111-4111-8111-111111111111', 'history.author@example.test', 'History Author', 'reception'),
+ ('fa222222-2222-4222-8222-222222222222', 'history.receiver@example.test', 'History Receiver', 'reception');
+create temp table work_ids (kind text, id uuid);
+grant all on work_ids to authenticated;
+set local role authenticated;
+set local request.jwt.claims = '{"sub":"fa111111-1111-4111-8111-111111111111"}';
+insert into work_ids select 'task', task_id from public.create_task('Check towels', 'Use clean towels', null, current_date, 'normal');
+insert into work_ids select 'note', shift_note_id from public.add_shift_note(current_date, 'Keep the spare key at the desk');
+select is((select actor_name from public.work_item_activity('task', (select id from work_ids where kind='task'))), 'History Author', 'Task creation names its original author');
+set local request.jwt.claims = '{"sub":"fa222222-2222-4222-8222-222222222222"}';
+select task_id from public.assign_task((select id from work_ids where kind='task'), 'fa222222-2222-4222-8222-222222222222');
+select task_id from public.update_task_status((select id from work_ids where kind='task'), 'done', null);
+select shift_note_id from public.hand_over_shift((select id from work_ids where kind='note'));
+select is((select actor_name from public.work_item_activity('task', (select id from work_ids where kind='task')) where action='create_task'), 'History Author', 'Reassignment does not rewrite the creator');
+select is((select assignee_name from public.work_item_activity('task', (select id from work_ids where kind='task')) where action='assign_task'), 'History Receiver', 'Assignment names the recipient');
+select is((select actor_name from public.work_item_activity('task', (select id from work_ids where kind='task')) where status='done'), 'History Receiver', 'Completion names the person who marked done');
+select ok((select occurred_at is not null from public.work_item_activity('task', (select id from work_ids where kind='task')) where status='done'), 'Completion has a date and time');
+select is((select actor_name from public.work_item_activity('note', (select id from work_ids where kind='note')) where action='hand_over_shift'), 'History Receiver', 'Handover names the person who confirmed it');
+select is((select count(*)::int from public.work_item_activity('note', (select id from work_ids where kind='note'))), 2, 'Note history contains only its creation and handover');
+select throws_ok($$select * from public.work_item_activity('payment', (select id from work_ids where kind='task'))$$, '22023', null, 'Other entity types cannot be queried');
+select throws_ok($$select * from public.work_item_activity('task', 'fa999999-9999-4999-8999-999999999999')$$, 'P0002', null, 'Missing item is not presented as empty history');
+select throws_ok($$select * from audit.entries$$, '42501', null, 'Reception still cannot read general audit entries');
+reset role;
+select ok(not has_function_privilege('anon','public.work_item_activity(text,uuid)','execute'), 'Guests cannot call history');
+update public.staff set is_active=false where id='fa222222-2222-4222-8222-222222222222';
+set local role authenticated;
+select throws_ok($$select * from public.work_item_activity('task', (select id from work_ids where kind='task'))$$, '42501', null, 'Disabled staff cannot read history');
+reset role;
+select is((select count(*)::int from audit.entries e join work_ids w on e.entity_id=w.id::text), 5, 'Reading history never adds or edits audit events');
+select * from finish();
+rollback;

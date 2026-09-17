@@ -1,0 +1,2596 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "../styles/theme.css";
+
+@custom-variant dark {
+  &:is([data-theme="dark"], [data-theme="dark"] *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:is(html:not([data-theme="light"]), html:not([data-theme="light"]) *) {
+      @slot;
+    }
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-data);
+  --font-heading: var(--font-display);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  --radius-sm: var(--radius-inner);
+  --radius-md: var(--radius-control);
+  --radius-lg: var(--radius-button);
+  --radius-xl: var(--radius-card);
+  --radius-2xl: var(--radius-modal);
+  --radius-3xl: var(--radius-modal);
+  --radius-4xl: var(--radius-modal);
+}
+
+:root {
+  --background: var(--surface-base);
+  --foreground: var(--text-primary);
+
+  --card: var(--surface-raised);
+  --card-foreground: var(--text-primary);
+  --popover: var(--surface-raised);
+  --popover-foreground: var(--text-primary);
+
+  --primary: var(--brand);
+  --primary-foreground: var(--on-brand);
+  --secondary: var(--surface-sunken);
+  --secondary-foreground: var(--text-primary);
+
+  --muted: var(--surface-hover);
+  --muted-foreground: var(--text-muted);
+
+  --accent: var(--surface-hover);
+  --accent-foreground: var(--text-primary);
+
+  --destructive: var(--danger);
+
+  --sidebar: var(--surface-raised);
+  --sidebar-foreground: var(--text-secondary);
+  --sidebar-primary: var(--brand);
+  --sidebar-primary-foreground: var(--on-brand);
+  --sidebar-accent: var(--surface-hover);
+  --sidebar-accent-foreground: var(--text-primary);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--brand);
+
+  --input: var(--border-interactive);
+  --ring: var(--brand);
+
+  --radius: var(--radius-control);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+@theme inline {
+  @keyframes wp-hero-scale {
+    from {
+      transform: scale(1.04);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+}
+
+@keyframes wp-hero-drift {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+
+@utility hero-scale {
+  transform-origin: center;
+  animation: wp-hero-scale 12s ease-out forwards;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes wp-home-bridge-motion {
+  from {
+    transform: translateY(-2%) scale(1.07);
+  }
+  to {
+    transform: translateY(2%) scale(1.02);
+  }
+}
+
+.home-bridge-motion {
+  transform: scale(1.04);
+  transform-origin: center;
+}
+
+@supports (animation-timeline: view()) {
+  .home-bridge-motion {
+    animation: wp-home-bridge-motion linear both;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-bridge-motion {
+    animation: none;
+    transform: none;
+  }
+}
+
+@keyframes wp-concept-hero-media {
+  from {
+    transform: scale(var(--motion-concept-hero-scale));
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes wp-concept-hero-copy {
+  0%,
+  45% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(calc(var(--space-concept-hero-copy-shift) * -1));
+  }
+}
+
+@keyframes wp-concept-chapter-media {
+  from {
+    transform: translateY(calc(var(--motion-concept-chapter-shift) * -1))
+      scale(var(--motion-concept-chapter-scale));
+  }
+  to {
+    transform: translateY(var(--motion-concept-chapter-shift))
+      scale(var(--motion-concept-chapter-scale));
+  }
+}
+
+@keyframes wp-concept-piece-reveal {
+  from {
+    opacity: 0;
+    filter: blur(var(--space-concept-reveal-blur));
+    transform: translateY(var(--space-concept-copy-shift));
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes wp-concept-number-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-concept-copy-shift));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.concept-hero-stage {
+  height: var(--measure-concept-hero-stage);
+}
+
+.concept-hero-image {
+  transform: scale(var(--motion-concept-hero-scale));
+  transform-origin: center;
+  will-change: transform;
+}
+
+.concept-chapter-image {
+  transform: scale(var(--motion-concept-chapter-scale));
+  transform-origin: center;
+  will-change: transform;
+}
+
+.theme-switch[data-slot="textarea"] {
+  resize: none;
+}
+
+[data-slot="dialog-content"] > [data-slot="dialog-header"],
+[data-slot="alert-dialog-content"] > [data-slot="alert-dialog-header"] {
+  padding-inline-end: var(--measure-dialog-close-clearance);
+}
+
+.wellplace-button[data-variant] {
+  overflow: visible;
+}
+
+.theme-switch.wellplace-button[data-variant]::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, var(--tap-min));
+  height: var(--tap-min);
+  translate: -50% -50%;
+  content: "";
+}
+
+.leaflet-touch .leaflet-bar a.leaflet-control-zoom-in,
+.leaflet-touch .leaflet-bar a.leaflet-control-zoom-out,
+.leaflet-bar a.leaflet-control-zoom-in,
+.leaflet-bar a.leaflet-control-zoom-out {
+  width: var(--tap-min);
+  height: var(--tap-min);
+  line-height: var(--tap-min);
+}
+
+.concept-rail {
+  width: var(--measure-concept-rail-w);
+}
+
+.concept-word {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: var(--space-concept-word-mask);
+  margin-bottom: calc(var(--space-concept-word-mask) * -1);
+  vertical-align: bottom;
+}
+
+.concept-word-inner {
+  display: inline-block;
+  will-change: transform;
+}
+
+.concept-rail-track {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--border-strong) 70%, transparent);
+}
+
+.concept-rail-fill {
+  height: 100%;
+  transform: scaleY(0);
+  transform-origin: top center;
+  border-radius: 999px;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--brand) 30%, transparent),
+    var(--brand)
+  );
+  will-change: transform;
+}
+
+.concept-rail-marker {
+  width: var(--measure-concept-rail-marker);
+  height: var(--measure-concept-rail-marker);
+  margin-left: calc(var(--measure-concept-rail-marker) / -2);
+  background: color-mix(in srgb, var(--brand) 18%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--brand) 30%, transparent);
+  will-change: transform;
+}
+
+.concept-rail-dot {
+  width: var(--measure-concept-rail-dot);
+  height: var(--measure-concept-rail-dot);
+  box-shadow: var(--shadow-md);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .concept-hero-image,
+  .concept-chapter-image {
+    transform: none;
+    will-change: auto;
+  }
+
+  .concept-hero-copy,
+  .concept-hero-scroll,
+  .concept-reveal-piece,
+  .concept-reveal-number {
+    animation: none;
+    filter: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .concept-rail-track,
+  .concept-rail-fill,
+  .concept-rail-marker {
+    display: none;
+  }
+}
+
+.faq-hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid color-mix(in srgb, var(--brand) 14%, transparent);
+  background:
+    radial-gradient(
+      122% 90% at 22% -20%,
+      color-mix(in srgb, var(--brand-wash) 92%, transparent),
+      transparent 58%
+    ),
+    radial-gradient(
+      86% 68% at 84% 4%,
+      color-mix(in srgb, var(--brand) 9%, transparent),
+      transparent 60%
+    ),
+    var(--home-faq-surface);
+}
+
+.wellplace-button[data-variant] {
+  --marketing-button-base: var(--brand);
+  --marketing-button-border: transparent;
+  --marketing-button-fill: var(--brand-hover);
+  --marketing-button-ink: var(--on-brand);
+  --marketing-button-hover-ink: var(--on-brand);
+  --marketing-button-fill-duration: 460ms;
+  --marketing-button-fill-ease: cubic-bezier(0.76, 0, 0.24, 1);
+  isolation: isolate;
+  position: relative;
+  overflow: hidden;
+  border-color: var(--marketing-button-border);
+  background: var(--marketing-button-base);
+  color: var(--marketing-button-ink);
+  transition:
+    color 160ms ease 220ms,
+    border-color 240ms ease,
+    box-shadow 240ms ease,
+    transform 240ms ease;
+}
+
+.wellplace-button[data-variant="outline"] {
+  --marketing-button-base: var(--surface-raised);
+  --marketing-button-border: var(--border-interactive);
+  --marketing-button-fill: var(--surface-hover);
+  --marketing-button-ink: var(--text-primary);
+  --marketing-button-hover-ink: var(--text-primary);
+}
+
+.wellplace-button[data-variant="secondary"] {
+  --marketing-button-base: var(--surface-sunken);
+  --marketing-button-fill: var(--surface-hover);
+  --marketing-button-ink: var(--text-primary);
+  --marketing-button-hover-ink: var(--text-primary);
+}
+
+.wellplace-button[data-variant="ghost"] {
+  --marketing-button-base: transparent;
+  --marketing-button-fill: var(--surface-hover);
+  --marketing-button-ink: var(--text-secondary);
+  --marketing-button-hover-ink: var(--text-primary);
+}
+
+.wellplace-button[data-variant="destructive"] {
+  --marketing-button-base: var(--danger);
+  --marketing-button-fill: var(--danger-hover);
+  --marketing-button-ink: var(--on-brand);
+  --marketing-button-hover-ink: var(--on-brand);
+}
+
+.wellplace-button[data-variant="link"] {
+  --marketing-button-base: transparent;
+  --marketing-button-fill: transparent;
+  --marketing-button-ink: var(--brand);
+  --marketing-button-hover-ink: var(--brand-hover);
+}
+
+.wellplace-button:not([data-variant="ghost"]):not([data-variant="link"]):not([data-size^="icon"])::before,
+.wellplace-button[data-variant="ghost"][data-hover="sweep"]:not([data-size^="icon"])::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--marketing-button-fill);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition:
+    transform var(--marketing-button-fill-duration) var(--marketing-button-fill-ease);
+}
+
+.wellplace-button[data-variant]:hover,
+.wellplace-button[data-variant]:focus-visible {
+  border-color: var(--marketing-button-fill);
+  background: var(--marketing-button-base);
+  color: var(--marketing-button-hover-ink);
+  box-shadow: var(--shadow-sm);
+}
+
+.wellplace-button:is(
+    [data-variant="ghost"]:not([data-hover="sweep"]),
+    [data-variant="link"],
+    [data-size^="icon"]
+  ):not(.theme-switch) {
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.wellplace-button:is(
+    [data-variant="ghost"]:not([data-hover="sweep"]),
+    [data-size^="icon"]
+  ):not(.theme-switch):is(:hover, :focus-visible) {
+  border-color: var(--marketing-button-fill);
+  background: var(--marketing-button-fill);
+  color: var(--marketing-button-hover-ink);
+  box-shadow: none;
+}
+
+.wellplace-button[data-variant="ghost"]:not(.theme-switch):is(:hover, :focus-visible) {
+  border-color: transparent;
+}
+
+.wellplace-button[data-size^="icon"]::before {
+  content: none;
+}
+
+.wellplace-button[data-variant][data-size^="icon"] {
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+:is(button, a)[data-size^="icon"]:not(:disabled):not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
+.wellplace-button[data-variant="link"]:not(.theme-switch):is(
+    :hover,
+    :focus-visible
+  ) {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.wellplace-button.footer-cookie-link[data-slot="button"] {
+  --marketing-button-base: transparent;
+  --marketing-button-border: transparent;
+  --marketing-button-fill: transparent;
+  --marketing-button-ink: color-mix(in srgb, var(--band-ink) 80%, transparent);
+  --marketing-button-hover-ink: var(--band-accent);
+}
+
+.wellplace-button.footer-social-link[data-tone="scrim"][data-variant="ghost"] {
+  --marketing-button-base: color-mix(in srgb, var(--band-ink) 10%, transparent);
+  --marketing-button-fill: color-mix(in srgb, var(--band-ink) 18%, transparent);
+  border-radius: 50%;
+}
+
+.wellplace-button.booking-summary-edit[data-slot="button"] {
+  --marketing-button-ink: var(--text-primary);
+  --marketing-button-hover-ink: var(--brand);
+}
+
+.wellplace-button.booking-summary-edit[data-empty] {
+  --marketing-button-ink: var(--brand);
+}
+
+.wellplace-button.footer-cookie-link[data-slot="button"]:hover,
+.wellplace-button.footer-cookie-link[data-slot="button"]:focus-visible {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.wellplace-button:not([data-variant="ghost"]):not([data-variant="link"]):not([data-size^="icon"]):hover::before,
+.wellplace-button:not([data-variant="ghost"]):not([data-variant="link"]):not([data-size^="icon"]):focus-visible::before,
+.wellplace-button[data-variant="ghost"][data-hover="sweep"]:not([data-size^="icon"]):is(:hover, :focus-visible)::before {
+  transform: scaleX(1);
+}
+
+.wellplace-button:not([data-variant="ghost"]):not([data-variant="link"]):not([data-size^="icon"]):not([data-hover="simple"]):active::before,
+.wellplace-button[data-variant="ghost"][data-hover="sweep"]:not([data-size^="icon"]):active::before {
+  transform: scaleX(1);
+  background: color-mix(in srgb, var(--marketing-button-fill) var(--button-press-fill-share), var(--text-primary));
+}
+
+.wellplace-button[data-tone="brand"] {
+  --marketing-button-base: transparent;
+  --marketing-button-border: var(--brand);
+  --marketing-button-fill: var(--brand);
+  --marketing-button-ink: var(--brand);
+  --marketing-button-hover-ink: var(--on-brand);
+}
+
+.wellplace-button[data-tone="danger"] {
+  --marketing-button-base: transparent;
+  --marketing-button-border: transparent;
+  --marketing-button-fill: var(--danger-wash);
+  --marketing-button-ink: var(--danger);
+  --marketing-button-hover-ink: var(--danger-ink);
+}
+
+.wellplace-button[data-tone="plain"] {
+  --marketing-button-base: transparent;
+  --marketing-button-border: transparent;
+  --marketing-button-fill: transparent;
+}
+
+.wellplace-button[data-tone="accent"] {
+  --marketing-button-border: var(--band-accent);
+  --marketing-button-base: transparent;
+  --marketing-button-fill: var(--band-accent);
+  --marketing-button-ink: var(--band-accent);
+  --marketing-button-hover-ink: var(--band-deep);
+}
+
+.wellplace-button[data-tone="scrim"] {
+  --marketing-button-border: var(--band-ink);
+  --marketing-button-base: transparent;
+  --marketing-button-fill: var(--band-ink);
+  --marketing-button-ink: var(--band-ink);
+  --marketing-button-hover-ink: var(--band-deep);
+}
+
+.wellplace-button[data-tone="band-accent"] {
+  --marketing-button-border: var(--band-accent);
+  --marketing-button-base: transparent;
+  --marketing-button-fill: var(--band-action-fill);
+  --marketing-button-ink: var(--band-accent);
+  --marketing-button-hover-ink: var(--band-action-hover-ink);
+}
+
+.wellplace-button[data-tone="band-scrim"] {
+  --marketing-button-border: var(--band-accent);
+  --marketing-button-base: transparent;
+  --marketing-button-fill: var(--band-scrim-fill);
+  --marketing-button-ink: var(--band-ink);
+  --marketing-button-hover-ink: var(--band-scrim-hover-ink);
+}
+
+/* [§Project owner: preserve approved controls] Text links over card images
+   keep their original scrim colors in both themes, without an outline. */
+.wellplace-button[data-tone="scrim"][data-variant="link"] {
+  --marketing-button-border: transparent;
+  --marketing-button-fill: transparent;
+  --marketing-button-ink: var(--on-scrim);
+  --marketing-button-hover-ink: var(--on-scrim-muted);
+}
+
+.wellplace-button[data-tone="nav"] {
+  --marketing-button-border: var(--band-accent);
+  --marketing-button-base: transparent;
+  --marketing-button-fill: var(--band-action-fill);
+  --marketing-button-ink: var(--band-accent);
+  --marketing-button-hover-ink: var(--band-action-hover-ink);
+}
+
+.wellplace-button[data-tone="scrim"][data-size^="icon"] {
+  --marketing-button-base: rgb(var(--scrim-rgb) / 0.6);
+  --marketing-button-border: rgb(var(--on-scrim-rgb) / 0.25);
+  --marketing-button-fill: rgb(var(--scrim-rgb) / 0.8);
+  --marketing-button-ink: var(--on-scrim);
+  --marketing-button-hover-ink: var(--on-scrim);
+}
+
+.wellplace-button[data-tone="scrim"][data-variant="ghost"] {
+  --marketing-button-base: transparent;
+  --marketing-button-border: transparent;
+  --marketing-button-fill: color-mix(in srgb, var(--band-ink) 10%, transparent);
+  --marketing-button-ink: var(--band-ink);
+  --marketing-button-hover-ink: var(--band-accent);
+}
+
+.density-console .wellplace-button:is([data-variant="outline"], [data-variant="secondary"]):not(.theme-switch),
+.density-console .wellplace-button[data-variant="ghost"][data-hover="sweep"]:not(.theme-switch) {
+  --marketing-button-fill: var(--brand);
+  --marketing-button-hover-ink: var(--on-brand);
+}
+
+.density-console .wellplace-button[data-hover="simple"]:not(.theme-switch) {
+  --marketing-button-fill: var(--surface-hover);
+  --marketing-button-hover-ink: var(--text-primary);
+  transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.density-console .wellplace-button[data-hover="simple"][data-variant="default"]:not(.theme-switch) {
+  --marketing-button-fill: var(--brand-hover);
+  --marketing-button-hover-ink: var(--on-brand);
+}
+
+.density-console .wellplace-button:is([data-tone="danger"], [data-variant="destructive"]):not(.theme-switch) {
+  --marketing-button-fill: var(--danger-wash);
+  --marketing-button-hover-ink: var(--danger-ink);
+}
+
+.density-console .wellplace-button[data-hover="simple"]:not(.theme-switch)::before {
+  content: none;
+}
+
+.density-console .wellplace-button[data-hover="simple"]:not(.theme-switch):not([data-size^="icon"]):not(.reception-buffer-trigger):not(:disabled):not([aria-disabled="true"]):is(:hover, :focus-visible) {
+  border-color: var(--marketing-button-fill);
+  background: var(--marketing-button-fill);
+  color: var(--marketing-button-hover-ink);
+  box-shadow: none;
+}
+
+.density-console .wellplace-button[data-variant="ghost"]:not(.theme-switch):is(:hover, :focus-visible) {
+  border-color: transparent;
+}
+
+.density-console .wellplace-button[data-variant="link"] {
+  --marketing-button-fill: transparent;
+  --marketing-button-hover-ink: var(--brand-hover);
+}
+
+.density-console .wellplace-button[data-variant="link"]:is(:hover, :focus-visible) {
+  border-color: transparent;
+  background: transparent;
+}
+
+.density-console .wellplace-button:is(:disabled, [aria-disabled="true"]):not(.theme-switch) {
+  pointer-events: none;
+  border-color: var(--marketing-button-border);
+  background: var(--marketing-button-base);
+  color: var(--marketing-button-ink);
+}
+
+.density-console .wellplace-button[data-variant]:is(:disabled, [aria-disabled="true"])::before {
+  content: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .density-console .wellplace-button:not(.theme-switch),
+  .density-console .wellplace-button:not(.theme-switch)::before {
+    transition: none;
+  }
+}
+
+.density-console .wellplace-button.settings-row[data-hover="simple"]:not(.theme-switch) {
+  --marketing-button-fill: var(--surface-active);
+}
+
+.settings-row .settings-row-icon,
+.settings-row .settings-row-chevron,
+.settings-row .text-text-secondary,
+.settings-row .text-text-muted {
+  transition:
+    background-color var(--motion-button-duration) var(--motion-button-ease),
+    color var(--motion-button-duration) var(--motion-button-ease);
+}
+
+.settings-row:not(:disabled):is(:hover, :focus-visible) .settings-row-icon {
+  background: var(--brand);
+  color: var(--on-brand);
+}
+
+.settings-row:not(:disabled):is(:hover, :focus-visible) :is(.settings-row-chevron, .text-text-secondary, .text-text-muted) {
+  color: var(--text-primary);
+}
+
+.settings-panel [data-slot="accordion-trigger"] {
+  border-radius: 0;
+  cursor: pointer;
+  transition:
+    background-color var(--motion-button-duration) var(--motion-button-ease),
+    color var(--motion-button-duration) var(--motion-button-ease);
+}
+
+.settings-panel-body {
+  scrollbar-gutter: stable;
+}
+
+.settings-panel [data-slot="accordion-trigger"]:not(:disabled):is(:hover, :focus-visible) {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.settings-panel[data-slot="sheet-content"][data-side="right"] {
+  width: min(100%, var(--measure-settings-panel));
+  max-width: var(--measure-settings-panel);
+  height: 100dvh;
+  overflow: clip;
+}
+
+.settings-panel :is([data-slot="field-label"], [data-slot="sheet-description"]) {
+  color: var(--text-secondary);
+}
+
+.settings-panel :is([data-slot="input"], [data-slot="textarea"], [data-slot="select-trigger"], [data-slot="input-group"]),
+.settings-popup [data-slot="select-trigger"] {
+  min-width: 0;
+  min-height: var(--spacing-tap);
+  border-radius: var(--radius-control);
+  background: var(--surface-base);
+  color: var(--text-primary);
+  transition:
+    background-color var(--motion-button-duration) var(--motion-button-ease),
+    border-color var(--motion-button-duration) var(--motion-button-ease);
+}
+
+.settings-panel :is([data-slot="input"], [data-slot="textarea"], [data-slot="select-trigger"], [data-slot="input-group"]):not(:disabled):not([aria-invalid="true"]):hover,
+.settings-popup [data-slot="select-trigger"]:not(:disabled):hover {
+  background: var(--surface-hover);
+  border-color: var(--border-interactive);
+}
+
+.settings-panel :is([data-slot="input"], [data-slot="textarea"], [data-slot="select-trigger"]):focus-visible,
+.settings-popup [data-slot="select-trigger"]:focus-visible {
+  background: var(--surface-raised);
+}
+
+.settings-panel :is([data-slot="input"], [data-slot="textarea"], [data-slot="select-trigger"]):disabled {
+  background: var(--surface-sunken);
+  color: var(--text-muted);
+}
+
+.settings-panel [data-slot="tabs-trigger"] {
+  min-width: 0;
+  color: var(--text-secondary);
+}
+
+.settings-panel [data-slot="tabs-trigger"]:is(:hover, :focus-visible) {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.settings-panel [data-slot="tabs-trigger"][data-state="active"] {
+  background: var(--surface-raised);
+  color: var(--text-primary);
+}
+
+.settings-popup {
+  background: var(--surface-raised);
+  color: var(--text-primary);
+  border-color: var(--border);
+}
+
+.settings-popup :is([data-slot="select-item"], [data-slot="dropdown-menu-item"]) {
+  min-height: var(--spacing-tap);
+}
+
+.settings-popup :is([data-slot="select-item"], [data-slot="dropdown-menu-item"])[data-highlighted] {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.settings-schedule-menu [data-slot="dropdown-menu-item"] {
+  gap: calc(var(--spacing) * 3);
+  padding: calc(var(--spacing) * 3);
+  cursor: pointer;
+  transition: background-color var(--motion-button-duration) var(--motion-button-ease), color var(--motion-button-duration) var(--motion-button-ease);
+}
+
+.settings-schedule-menu [data-slot="dropdown-menu-item"]:is(:hover, :focus-visible, [data-highlighted]) {
+  background: var(--surface-active);
+  color: var(--text-primary);
+}
+
+.settings-panel .wellplace-button[aria-haspopup="menu"][data-state="open"] {
+  background: var(--surface-active);
+  color: var(--text-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .settings-panel,
+  .settings-popup,
+  .settings-row *,
+  .settings-panel *,
+  .settings-popup * {
+    animation: none;
+    transition: none;
+  }
+}
+
+.density-console .wellplace-button.cms-dialog-cancel {
+  --marketing-button-fill: var(--surface-hover);
+  --marketing-button-hover-ink: var(--text-primary);
+  cursor: pointer;
+}
+
+.density-console .wellplace-button.cms-dialog-cancel::before {
+  content: none;
+}
+
+.density-console .wellplace-button.cms-dialog-cancel:is(:hover, :focus-visible) {
+  border-color: var(--border-hover);
+  background: var(--surface-hover);
+  color: var(--text-primary);
+  box-shadow: none;
+}
+
+.home-mobile-menu[data-state="open"] {
+  animation: wp-home-mobile-menu-in var(--motion-mobile-menu-duration)
+    var(--motion-mobile-menu-ease) both;
+}
+
+.home-mobile-menu[data-state="closed"] {
+  animation: wp-home-mobile-menu-out var(--motion-mobile-menu-duration)
+    var(--motion-mobile-menu-ease) both;
+}
+
+.home-mobile-menu[data-state="open"] .home-mobile-menu-item {
+  animation: wp-home-mobile-menu-item-in var(--motion-mobile-menu-item-duration)
+    var(--motion-mobile-menu-ease) both;
+  animation-delay: calc(var(--motion-mobile-menu-item-delay) + var(--mobile-menu-delay));
+}
+
+.home-mobile-menu[data-state="closed"] .home-mobile-menu-item {
+  animation: wp-home-mobile-menu-item-out var(--motion-mobile-menu-item-duration)
+    var(--motion-mobile-menu-ease) both;
+}
+
+@keyframes wp-home-mobile-menu-in {
+  from {
+    clip-path: inset(0 0 100% 0);
+    opacity: 0.75;
+  }
+  to {
+    clip-path: inset(0);
+    opacity: 1;
+  }
+}
+
+@keyframes wp-home-mobile-menu-out {
+  from {
+    clip-path: inset(0);
+    opacity: 1;
+  }
+  to {
+    clip-path: inset(0 0 100% 0);
+    opacity: 0.75;
+  }
+}
+
+@keyframes wp-home-mobile-menu-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes wp-home-mobile-menu-item-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-mobile-menu[data-state],
+  .home-mobile-menu[data-state] .home-mobile-menu-item {
+    animation: none;
+  }
+}
+
+.wellplace-button[data-tone="edge"] {
+  --marketing-button-base: var(--booking-edge-surface);
+  --marketing-button-border: var(--booking-edge-border);
+  --marketing-button-fill: var(--booking-edge-hover);
+  --marketing-button-ink: var(--booking-edge-ink);
+  --marketing-button-hover-ink: var(--booking-edge-ink);
+}
+
+.wellplace-button.booking-edge-button {
+  position: fixed;
+  transition:
+    translate var(--motion-booking-edge-enter-duration) var(--motion-booking-edge-enter-ease),
+    opacity var(--motion-booking-edge-fade-duration) ease-out,
+    color var(--motion-button-duration) var(--motion-button-ease),
+    background-color var(--motion-button-duration) var(--motion-button-ease),
+    border-color var(--motion-button-duration) var(--motion-button-ease),
+    box-shadow var(--motion-button-duration) var(--motion-button-ease);
+}
+
+@media (width < 48rem) {
+  .home-floating-safe {
+    padding-inline: var(--space-home-mobile-inline);
+  }
+
+  /* [§Mobile implementation 1; client mobile-tab reference, 14 Sep]
+     Equal gutters keep the content centered and the fixed tab outside it. */
+  [data-home] .home-floating-safe,
+  /* [§Owner shared reservation sizing, 15 Sep] Match Home on every page. */
+  .reservation-section .home-floating-safe {
+    padding-inline: calc(var(--measure-booking-edge-w) + var(--space-booking-edge-clearance));
+  }
+
+  .wellplace-button.booking-edge-button {
+    --marketing-button-base: color-mix(in srgb, var(--booking-edge-glass-surface) var(--booking-edge-glass-opacity), transparent);
+    --marketing-button-border: var(--booking-edge-glass-border);
+    --marketing-button-fill: var(--brand-hover);
+    --marketing-button-ink: var(--booking-edge-glass-ink);
+    --marketing-button-hover-ink: var(--on-brand);
+    -webkit-backdrop-filter: blur(var(--blur-booking-edge-glass));
+    backdrop-filter: blur(var(--blur-booking-edge-glass));
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .wellplace-button.booking-edge-button::before {
+  top: var(--measure-booking-edge-media-h);
+  z-index: 1;
+  transform: scaleY(0);
+  transform-origin: center bottom;
+}
+
+.wellplace-button.booking-edge-button:hover::before,
+.wellplace-button.booking-edge-button:focus-visible::before {
+  transform: scaleY(1);
+}
+
+.booking-edge-label {
+  position: relative;
+  z-index: 2;
+  font-size: var(--type-booking-edge-label);
+  line-height: 1;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.booking-edge-media {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 0;
+  display: block;
+  height: var(--measure-booking-edge-media-h);
+  overflow: hidden;
+  background: var(--booking-edge-surface);
+}
+
+.booking-edge-media img {
+  z-index: 0;
+  filter: sepia(0) saturate(1) brightness(1) contrast(1);
+  transform: scale(1);
+  transition:
+    filter var(--marketing-button-fill-duration) var(--marketing-button-fill-ease),
+    transform var(--marketing-button-fill-duration) var(--marketing-button-fill-ease);
+}
+
+.booking-edge-button:hover .booking-edge-media img,
+.booking-edge-button:focus-visible .booking-edge-media img {
+  filter: sepia(0.55) saturate(0.62) brightness(0.58) contrast(1.2);
+  transform: scale(1.04);
+}
+
+.booking-edge-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--booking-edge-media-tint);
+  opacity: 1;
+  transition: opacity var(--marketing-button-fill-duration) var(--marketing-button-fill-ease);
+}
+
+.booking-edge-button:hover .booking-edge-media::after,
+.booking-edge-button:focus-visible .booking-edge-media::after {
+  opacity: 0.35;
+}
+
+.booking-edge-body {
+  position: absolute;
+  top: var(--measure-booking-edge-media-h);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  padding: var(--space-booking-edge-body);
+}
+
+.booking-edge-corner {
+  position: absolute;
+  width: var(--measure-booking-edge-corner);
+  height: var(--measure-booking-edge-corner);
+  border-color: currentColor;
+  opacity: 0.65;
+  transition: opacity var(--motion-button-duration) var(--motion-button-ease);
+}
+
+.booking-edge-corner-start {
+  top: var(--space-booking-edge-corner);
+  left: var(--space-booking-edge-corner);
+  border-top-width: 1px;
+  border-left-width: 1px;
+}
+
+.booking-edge-corner-end {
+  right: var(--space-booking-edge-corner);
+  bottom: var(--space-booking-edge-corner);
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+}
+
+.booking-edge-button:hover .booking-edge-corner,
+.booking-edge-button:focus-visible .booking-edge-corner {
+  opacity: 1;
+}
+
+.booking-loading-page {
+  isolation: isolate;
+  position: relative;
+}
+
+.booking-loading-page::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--brand) 18%, transparent), transparent 52%),
+    linear-gradient(135deg, var(--surface-sunken), var(--surface-base));
+  content: "";
+}
+
+.booking-loading-content {
+  animation: wp-booking-loading-content-in var(--motion-booking-loading-content-duration)
+    var(--motion-booking-loading-ease) both;
+}
+
+.booking-loading-name {
+  background-image: linear-gradient(
+    90deg,
+    var(--text-muted),
+    var(--brand),
+    var(--text-primary),
+    var(--brand),
+    var(--text-muted)
+  );
+  background-position: 100% 0;
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  clip-path: inset(0 100% 0 0);
+  animation: wp-booking-loading-name-paint var(--motion-booking-loading-name-duration)
+    var(--motion-booking-loading-ease) forwards;
+}
+
+.booking-loading-progress {
+  width: var(--measure-booking-loading-progress);
+  height: var(--measure-booking-loading-progress-line);
+  overflow: hidden;
+  border-radius: var(--radius-inner);
+  background-color: var(--border);
+}
+
+.booking-loading-progress > span {
+  animation: wp-booking-loading-progress var(--motion-booking-loading-progress-duration)
+    var(--motion-booking-loading-ease) var(--motion-booking-loading-progress-delay) both;
+}
+
+@keyframes wp-booking-loading-content-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes wp-booking-loading-name-paint {
+  from {
+    background-position: 100% 0;
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    background-position: 0 0;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes wp-booking-loading-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.home-hero-action-primary[data-slot="button"] {
+  --marketing-button-base: var(--brand);
+  --marketing-button-border: var(--brand);
+  --marketing-button-fill: var(--brand-hover);
+  --marketing-button-ink: var(--on-brand);
+  --marketing-button-hover-ink: var(--on-brand);
+}
+
+.home-hero-action-secondary[data-slot="button"] {
+  --marketing-button-base: var(--surface-raised);
+  --marketing-button-border: var(--border-strong);
+  --marketing-button-fill: var(--surface-hover);
+  --marketing-button-ink: var(--text-primary);
+  --marketing-button-hover-ink: var(--text-primary);
+}
+
+.difference-card {
+  perspective: var(--motion-card-perspective);
+}
+
+.difference-card-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform var(--motion-card-flip-duration) var(--motion-card-flip-ease);
+  will-change: transform;
+}
+
+.difference-card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.difference-card-face-back {
+  transform: rotateY(180deg);
+}
+
+@media (width < 48rem) {
+  /* [§Owner mobile spacing correction, 15 Sep] Slide padding supplies the
+     remaining tab clearance; equal outer gutters keep every card centered. */
+  [data-home] .home-floating-safe.difference-container {
+    padding-inline: var(--measure-booking-edge-w);
+  }
+
+  .difference-carousel {
+    --space-card-flip-clearance: var(--space-difference-mobile-clearance);
+    /* Limit perspective overshoot so the flip fits the tighter mobile space. */
+    --motion-card-perspective: var(--motion-difference-mobile-perspective);
+  }
+}
+
+@media (width < 48rem) and (prefers-reduced-motion: reduce) {
+  .difference-carousel {
+    margin-block-start: var(--space-card-flip-stack);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* [§Client animation correction, 14 Sep] The perspective projects the card
+     above and below its resting bounds. Extend the clipped carousel viewport
+     into that clearance while keeping horizontal slide clipping intact. */
+  .difference-carousel {
+    display: grid;
+    margin-block-start: var(--space-card-flip-clearance);
+  }
+
+  .difference-carousel > [data-slot="carousel-content"] {
+    margin-block: calc(-1 * var(--space-card-flip-clearance));
+  }
+
+  .difference-carousel > [data-slot="carousel-content"] > div {
+    padding-block: var(--space-card-flip-clearance);
+  }
+
+  .difference-carousel > [data-slot="carousel-content"] + div {
+    margin-block-start: var(--space-card-flip-clearance);
+  }
+
+  /* [§Responsive quality assurance] Both faces contribute to the
+     height so the approved copy can wrap without clipping at tablet widths. */
+  .difference-card-face {
+    position: relative;
+    grid-area: 1 / 1;
+    min-width: 0;
+  }
+}
+
+.difference-card-scrim {
+  background-image: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--scrim-ink) var(--difference-scrim-base), transparent) 0%,
+    color-mix(in srgb, var(--scrim-ink) var(--difference-scrim-mid), transparent) 45%,
+    color-mix(in srgb, var(--scrim-ink) var(--difference-scrim-top), transparent) 100%
+  );
+}
+
+.difference-card-front {
+  background-image:
+    radial-gradient(
+      130% 82% at 50% -12%,
+      color-mix(in srgb, var(--band-accent) 13%, transparent),
+      transparent 62%
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--band-ink) 5%, transparent),
+      color-mix(in srgb, var(--band-deep) 62%, transparent)
+    );
+}
+
+.difference-card-front::after {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in srgb, var(--band-accent) 60%, transparent),
+    transparent
+  );
+  content: "";
+}
+
+.difference-card-glyph {
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--band-ink) 13%, transparent),
+    color-mix(in srgb, var(--band-deep) 72%, transparent)
+  );
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--band-ink) 20%, transparent),
+    var(--shadow-sm);
+}
+
+.difference-card[data-flipped] .difference-card-inner {
+  transform: rotateY(180deg);
+}
+
+.difference-card-reveal {
+  display: none;
+}
+
+@media (hover: hover) {
+  .difference-card:hover .difference-card-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+@media (hover: none) {
+  .difference-card-reveal {
+    display: flex;
+  }
+}
+
+.suite-carousel [data-slot="carousel-content"],
+.suite-carousel [data-slot="carousel-content"] > div,
+.suite-carousel [data-slot="carousel-item"] {
+  height: 100%;
+}
+
+.wellplace-button.suite-carousel-marker[data-slot="button"] {
+  color: var(--border-strong);
+}
+
+.wellplace-button.suite-carousel-marker[data-slot="button"][aria-current="true"] {
+  color: var(--brand-hover);
+}
+
+.wellplace-button.suite-carousel-marker[data-slot="button"]:is(:hover, :focus-visible) {
+  border-color: transparent;
+  background: transparent;
+  color: var(--border-strong);
+  box-shadow: none;
+}
+
+.wellplace-button.suite-carousel-marker[data-slot="button"][aria-current="true"]:is(:hover, :focus-visible) {
+  color: var(--brand-hover);
+}
+
+.suite-carousel-progress {
+  animation-name: wp-suite-carousel-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  transform: scaleX(0);
+}
+
+@keyframes wp-suite-carousel-progress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* [§Owner gallery sketch, 15 Sep] Layered images move and fade together;
+   the farthest images wrap while invisible, so the loop has no reset jump. */
+.gallery-deck {
+  height: var(--measure-gallery-deck);
+}
+
+@keyframes wp-suite-circuit-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.suite-circuit-progress {
+  transform-origin: left center;
+  animation: wp-suite-circuit-progress var(--suite-circuit-step) linear forwards;
+}
+
+.suite-circuit-progress[data-paused] {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .suite-circuit-progress {
+    animation: none;
+    transform: scaleX(1);
+  }
+}
+
+.suite-circuit-orbit {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  transform: rotate(var(--circuit-angle, 0deg));
+  transition: transform var(--motion-suite-circuit-step) var(--motion-gallery-deck-ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .suite-circuit-orbit {
+    transition: none;
+  }
+}
+
+.today-timer-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: var(--today-timer-grain-opacity);
+  mix-blend-mode: overlay;
+}
+
+.receipt-backdrop {
+  background-color: var(--surface-base);
+  background-image:
+    radial-gradient(ellipse 70% 55% at 50% -10%, color-mix(in oklab, var(--brand-wash) 85%, transparent), transparent 70%),
+    radial-gradient(ellipse 45% 40% at 0% 35%, color-mix(in oklab, var(--success-wash) 70%, transparent), transparent 70%),
+    radial-gradient(ellipse 45% 40% at 100% 70%, color-mix(in oklab, var(--brand-wash) 60%, transparent), transparent 70%);
+}
+
+.receipt-backdrop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: var(--today-timer-grain-opacity);
+  mix-blend-mode: overlay;
+}
+
+@media print {
+  .receipt-backdrop {
+    background: none;
+  }
+
+  .receipt-backdrop::before {
+    display: none;
+  }
+}
+
+.suite-fan-stage {
+  display: grid;
+  padding-top: calc(var(--measure-suite-fan-card-h) * (var(--scale-suite-fan-center) - 1));
+  padding-bottom: calc(var(--space-suite-fan-drop) * 2.2);
+}
+
+.suite-fan-card {
+  grid-area: 1 / 1;
+  justify-self: center;
+  width: var(--measure-suite-fan-card);
+  height: var(--measure-suite-fan-card-h);
+  cursor: pointer;
+  filter: brightness(calc(var(--suite-fan-side-brightness) - (var(--fan-depth) - 1) * var(--suite-fan-depth-brightness-step)));
+  transform-origin: 50% 100%;
+  transform:
+    translate(
+      calc(var(--fan-x) * var(--space-suite-fan-step)),
+      calc(var(--fan-y) * var(--space-suite-fan-drop))
+    )
+    rotate(calc(var(--fan-rotate) * var(--angle-suite-fan-step)))
+    scale(var(--fan-scale));
+  transition:
+    transform var(--motion-suite-fan-duration) var(--motion-gallery-deck-ease),
+    filter var(--motion-suite-fan-duration) var(--motion-gallery-deck-ease);
+  will-change: transform;
+}
+
+.suite-fan-card[data-jump] {
+  transition: none;
+}
+
+.suite-fan-card:not([data-center]):hover {
+  filter: brightness(var(--suite-fan-peek-brightness));
+}
+
+.suite-fan-card[data-center] {
+  cursor: auto;
+  filter: none;
+}
+
+.suite-fan-card[data-center] > article {
+  box-shadow:
+    var(--shadow-lg),
+    0 0 0 1px color-mix(in srgb, var(--brand) 45%, transparent);
+}
+
+.suite-fan-card .suite-fan-media {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .suite-fan-card {
+    transition: none;
+  }
+}
+
+.gallery-deck-card {
+  top: 50%;
+  left: 50%;
+  width: var(--measure-gallery-deck-card);
+  height: var(--measure-gallery-deck-card-height);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(calc(-50% + var(--gallery-offset) * var(--space-gallery-deck-step)), -50%)
+    scale(calc(1 - var(--gallery-depth) * var(--scale-gallery-deck-step)));
+  transition:
+    transform var(--motion-gallery-depth-duration) var(--motion-gallery-deck-ease),
+    opacity var(--motion-gallery-depth-duration) var(--motion-gallery-deck-ease);
+  will-change: transform, opacity;
+}
+
+.gallery-deck-card[data-visible] {
+  opacity: calc(1 - var(--gallery-depth) * var(--opacity-gallery-deck-step));
+  pointer-events: auto;
+}
+
+.gallery-deck-card[data-center] {
+  box-shadow: var(--shadow-md);
+}
+
+.gallery-deck .gallery-deck-image {
+  width: 100%;
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-deck-card {
+    transition: none;
+  }
+}
+
+.wellplace-button.gallery-lightbox-control:is([data-slot="button"], [data-slot="dialog-close"]) {
+  position: absolute;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wellplace-button[data-variant],
+  .wellplace-button[data-variant]::before {
+    transition: none !important;
+  }
+
+  .wellplace-button[data-variant],
+  .wellplace-button[data-variant]::before,
+    .booking-edge-media img,
+    .booking-edge-media::after,
+  .difference-card-inner {
+    transition: none;
+  }
+
+  .booking-edge-button:hover .booking-edge-media img,
+  .booking-edge-button:focus-visible .booking-edge-media img {
+    transform: none;
+  }
+
+  .difference-card {
+    aspect-ratio: auto;
+  }
+
+  .difference-card-inner {
+    display: grid;
+    height: auto;
+    gap: var(--space-card-flip-stack);
+    transform: none;
+  }
+
+  .difference-card:hover .difference-card-inner,
+  .difference-card[data-flipped] .difference-card-inner {
+    transform: none;
+  }
+
+  .difference-card-face {
+    position: relative;
+    inset: auto;
+    min-height: var(--measure-card-flip-reduced);
+    backface-visibility: visible;
+    -webkit-backface-visibility: visible;
+  }
+
+  .difference-card-face-back {
+    transform: none;
+  }
+
+  .difference-card-reveal {
+    display: none;
+  }
+
+  .booking-loading-content,
+  .booking-loading-name,
+  .booking-loading-progress > span {
+    animation: none;
+  }
+
+  .booking-loading-name {
+    background-position: 0 0;
+    clip-path: none;
+  }
+
+  .booking-loading-progress > span {
+    transform: scaleX(1);
+  }
+
+}
+
+@keyframes wp-step-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility step-reveal {
+  animation: wp-step-reveal 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--reveal-delay, 0ms);
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes wp-step-change {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility step-change {
+  animation: wp-step-change 180ms cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes wp-step-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--pulse-ring);
+  }
+  50% {
+    box-shadow: 0 0 0 0.3125rem var(--pulse-ring);
+  }
+}
+
+@utility step-pulse {
+  animation: wp-step-pulse 2s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@utility pb-safe {
+  padding-bottom: var(--space-safe-bottom);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="dialog-overlay"],
+  [data-slot="dialog-content"],
+  [data-slot="drawer-overlay"],
+  [data-slot="drawer-content"],
+  [data-slot="sheet-overlay"],
+  [data-slot="sheet-content"],
+  [data-slot="alert-dialog-overlay"],
+  [data-slot="alert-dialog-content"] {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@utility field-control {
+  height: var(--control-h-touch);
+  border-radius: var(--radius-card);
+  font-size: var(--type-control);
+}
+
+@utility wl-nav {
+  height: var(--measure-nav-h);
+  padding-inline: var(--space-nav-inline);
+}
+
+@utility wl-shell {
+  min-height: calc(100dvh - var(--measure-nav-h));
+
+  @media (width >= 64rem) {
+    margin-top: calc(var(--measure-nav-h) * -1);
+    min-height: 100vh;
+  }
+}
+
+@utility wl-panel {
+  min-height: calc(100dvh - var(--measure-nav-h));
+  padding: var(--space-panel-top) var(--space-panel-inline)
+    var(--space-panel-bottom);
+
+  @media (width >= 64rem) {
+    padding-top: var(--space-panel-align-lg);
+    padding-bottom: var(--space-panel-bottom-lg);
+  }
+}
+
+@utility wl-card {
+  padding: var(--space-card-pad);
+  border: 1px solid var(--border-interactive);
+  border-radius: var(--radius-modal);
+  background-color: color-mix(in srgb, var(--surface-raised) 90%, transparent);
+  backdrop-filter: blur(22px) saturate(1.05);
+  -webkit-backdrop-filter: blur(22px) saturate(1.05);
+  box-shadow:
+    0 44px 120px -30px rgb(var(--scrim-rgb) / 0.6),
+    inset 0 1px 0 rgb(var(--on-scrim-rgb) / 0.18);
+
+  @media (width >= 64rem) {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: none;
+    mix-blend-mode: normal;
+    z-index: 1;
+  }
+
+  ::view-transition-new(root) {
+    animation: wp-theme-dissolve 760ms cubic-bezier(0.33, 0, 0.2, 1) both;
+    mix-blend-mode: normal;
+    z-index: 2;
+  }
+
+  @keyframes wp-theme-dissolve {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: var(--text-primary);
+  -webkit-box-shadow: 0 0 0 1000px var(--surface-raised) inset;
+  box-shadow: 0 0 0 1000px var(--surface-raised) inset;
+  caret-color: var(--text-primary);
+  transition:
+    background-color 100000s ease-in-out 0s,
+    color 100000s ease-in-out 0s;
+}
+
+[data-sonner-toaster][dir="ltr"],
+[data-sonner-toaster][dir="rtl"] {
+  --width: 376px;
+  --gap: 18px;
+  --toast-close-button-start: unset;
+  --toast-close-button-end: 0;
+  --toast-close-button-transform: translate(38%, -38%);
+}
+
+[data-sonner-toast].wp-toast {
+  --wp-toast-accent: var(--text-secondary);
+  --wp-toast-on-accent: var(--surface-raised);
+  gap: 12px;
+  padding: 15px 16px;
+  border-width: 1px;
+  border-radius: 12px;
+  align-items: center;
+  font-family: var(--font-body);
+  box-shadow:
+    0 1px 2px rgb(var(--shadow-ink) / 0.05),
+    0 10px 24px -8px rgb(var(--shadow-ink) / 0.17),
+    0 24px 48px -24px rgb(var(--shadow-ink) / 0.2);
+}
+
+[data-sonner-toast].wp-toast[data-type="success"] {
+  --wp-toast-accent: var(--success);
+  --wp-toast-on-accent: var(--success-wash);
+}
+
+[data-sonner-toast].wp-toast[data-type="info"] {
+  --wp-toast-accent: var(--info);
+  --wp-toast-on-accent: var(--info-wash);
+}
+
+[data-sonner-toast].wp-toast[data-type="warning"] {
+  --wp-toast-accent: var(--warning);
+  --wp-toast-on-accent: var(--warning-wash);
+}
+
+[data-sonner-toast].wp-toast[data-type="error"] {
+  --wp-toast-accent: var(--danger);
+  --wp-toast-on-accent: var(--danger-wash);
+}
+
+[data-sonner-toaster] [data-sonner-toast][data-styled="true"].wp-toast [data-icon] {
+  width: auto;
+  height: auto;
+  margin: 0;
+  align-self: center;
+  justify-content: center;
+}
+
+[data-sonner-toast].wp-toast [data-content] {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  padding-right: 2px;
+}
+
+[data-sonner-toast].wp-toast [data-title] {
+  font-size: var(--type-fine);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+}
+
+[data-sonner-toast].wp-toast [data-description] {
+  color: inherit;
+  font-size: var(--type-micro);
+  opacity: 0.76;
+  line-height: 1.5;
+}
+
+[data-sonner-toaster] [data-sonner-toast][data-styled="true"].wp-toast [data-close-button] {
+  background: var(--wp-toast-on-accent);
+  border-color: var(--wp-toast-accent);
+  color: var(--wp-toast-accent);
+  top: 0;
+  right: 0;
+  left: unset;
+  transform: translate(38%, -38%);
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border-radius: 999px;
+  border-width: 1px;
+  border-style: solid;
+  opacity: 1;
+  box-shadow: 0 1px 4px rgb(var(--shadow-ink) / 0.16);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+[data-sonner-toaster] [data-sonner-toast][data-styled="true"].wp-toast [data-close-button]:hover {
+  background: var(--wp-toast-on-accent);
+  border-color: var(--wp-toast-accent);
+  color: var(--wp-toast-accent);
+}
+
+
+[data-sonner-toaster] [data-sonner-toast][data-styled="true"].wp-toast [data-close-button]:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+[data-sonner-toast].wp-toast [data-close-button]::before {
+  content: "";
+  position: absolute;
+  inset: -11px;
+  border-radius: inherit;
+}
+
+[data-sonner-toast].wp-toast [data-close-button] svg {
+  width: 12px;
+  height: 12px;
+  stroke-width: 2.5;
+}
+
+[data-sonner-toast].wp-toast [data-button] {
+  border-radius: var(--radius-control);
+  font-weight: 500;
+  font-size: var(--type-micro);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-sonner-toaster] [data-sonner-toast][data-styled="true"].wp-toast [data-close-button] {
+    transition: none;
+  }
+  [data-sonner-toaster] [data-sonner-toast][data-styled="true"].wp-toast [data-close-button]:hover {
+    transform: translate(38%, -38%);
+  }
+}
+
+@media (max-width: 420px) {
+  [data-sonner-toaster][dir="ltr"],
+  [data-sonner-toaster][dir="rtl"] {
+    --width: calc(100vw - 28px);
+  }
+}
+
+@utility gallery-stage {
+  height: var(--measure-gallery-stage);
+}
+
+@utility gallery-overlap {
+  margin-top: calc(var(--measure-gallery-overlap) * -1);
+}
+
+@utility map-plate {
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: var(--measure-map-cell) var(--measure-map-cell);
+}
+
+.density-console .wellplace-button.console-tab-active[data-variant] {
+  --marketing-button-border: var(--brand);
+}
+
+.reception-cleaning-buffer {
+  background-image: repeating-linear-gradient(135deg, transparent, transparent var(--measure-reception-stripe), var(--border-strong) var(--measure-reception-stripe), var(--border-strong) calc(var(--measure-reception-stripe) * 2));
+}
+
+.reception-cleaning-overdue {
+  background-color: var(--danger-wash);
+  background-image: repeating-linear-gradient(135deg, transparent, transparent var(--measure-reception-stripe), var(--danger) var(--measure-reception-stripe), var(--danger) calc(var(--measure-reception-stripe) * 2));
+  animation: reception-overdue-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes reception-overdue-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.62; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reception-cleaning-overdue {
+    animation: none;
+  }
+}
+
+.reception-nav-active[data-variant] {
+  --marketing-button-base: var(--brand-wash);
+  --marketing-button-ink: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.reception-desk-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: calc(var(--spacing) * 3);
+}
+
+.reception-desk-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--spacing) * 2);
+}
+
+.reception-desk-actions > .wellplace-button {
+  flex: 1;
+}
+
+.reception-schedule-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: calc(var(--spacing) * 3);
+  align-items: center;
+}
+
+.reception-schedule-zoom {
+  justify-self: end;
+}
+
+.reception-view-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) max-content;
+}
+
+.reception-view-list > [data-slot="tabs-trigger"]:nth-child(5) {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 640px) {
+  .reception-schedule-toolbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .reception-schedule-date { grid-column: 1 / -1; grid-row: 1; justify-self: start; }
+  .reception-schedule-views { grid-column: 1; grid-row: 2; }
+  .reception-schedule-zoom { grid-column: 2; grid-row: 2; }
+  .reception-view-list { display: flex; }
+}
+
+@media (min-width: 1024px) {
+  .reception-desk-toolbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .reception-desk-actions > .wellplace-button {
+    flex: none;
+  }
+}
+
+@media (min-width: 1280px) {
+  .reception-schedule-toolbar {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+  }
+
+  .reception-schedule-date { grid-column: 1; grid-row: 1; }
+
+  .reception-schedule-views {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .reception-schedule-zoom {
+    grid-column: 3;
+    grid-row: 1;
+  }
+}
+
+@media (orientation: portrait) {
+  .reception-front {
+    --measure-timeline-lane: var(--measure-reception-portrait-lane);
+  }
+}
+
+.density-console .wellplace-button.console-input-clear {
+  --marketing-button-base: transparent;
+  --marketing-button-border: transparent;
+  --marketing-button-fill: transparent;
+  --marketing-button-ink: var(--text-muted);
+  --marketing-button-hover-ink: var(--text-primary);
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text-muted);
+}
+
+.density-console .wellplace-button.console-input-clear:is(:hover, :focus-visible) {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text-primary);
+}
+
+.density-console .wellplace-button.console-timeline-trigger {
+  height: auto;
+  padding-block: calc(var(--spacing) * 3);
+  overflow: hidden;
+  --marketing-button-base: var(--surface-base);
+  --marketing-button-border: var(--border);
+  --marketing-button-fill: var(--surface-hover);
+  --marketing-button-ink: var(--text-primary);
+  --marketing-button-hover-ink: var(--text-primary);
+  cursor: pointer;
+  border-color: var(--border);
+  background: var(--surface-base);
+  box-shadow: none;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.density-console .wellplace-button.console-timeline-trigger:is(:hover, :focus-visible) {
+  border-color: var(--border-hover);
+  background: var(--surface-hover);
+  box-shadow: none;
+}
+
+.console-timeline-track {
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.density-console .wellplace-button.console-timeline-trigger:is(:hover, :focus-visible) .console-timeline-track {
+  border-color: var(--border-hover);
+  background: var(--surface-raised);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .density-console .wellplace-button.console-timeline-trigger,
+  .console-timeline-track {
+    transition: none;
+  }
+}
+
+.density-console .wellplace-button:not(:disabled):not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
+.suite-dialog[data-slot="dialog-content"] {
+  width: calc(100% - var(--spacing) * 8);
+  color: var(--text-primary);
+}
+
+.suite-dialog [data-slot="dialog-header"] {
+  background: var(--surface-raised);
+}
+
+.suite-dialog [data-slot="dialog-footer"] {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.suite-dialog [data-slot="dialog-footer"] > .wellplace-button {
+  flex: 1;
+}
+
+.suite-dialog [data-slot="dialog-footer"] > .wellplace-button:only-child {
+  flex: 0 1 auto;
+  min-width: calc(var(--spacing) * 28);
+  margin-inline-start: auto;
+}
+
+.suite-dialog :is([data-slot="input"], [data-slot="textarea"], [data-slot="select-trigger"]),
+.suite-workspace :is([data-slot="input"], [data-slot="select-trigger"]) {
+  min-width: 0;
+  background: var(--surface-raised);
+  color: var(--text-primary);
+  transition: background-color var(--motion-button-duration) var(--motion-button-ease), border-color var(--motion-button-duration) var(--motion-button-ease);
+}
+
+.suite-dialog :is([data-slot="input"], [data-slot="textarea"], [data-slot="select-trigger"]):not(:disabled):hover,
+.suite-workspace :is([data-slot="input"], [data-slot="select-trigger"]):not(:disabled):hover {
+  background: var(--surface-hover);
+  border-color: var(--border-hover);
+}
+
+.suite-dialog :is([data-slot="input"], [data-slot="textarea"], [data-slot="select-trigger"]):focus-visible {
+  background: var(--surface-raised);
+}
+
+.suite-popup {
+  background: var(--surface-raised);
+  color: var(--text-primary);
+  border-color: var(--border);
+}
+
+.suite-popup [data-slot="select-item"][data-highlighted] {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.suite-card,
+.suite-activity-row {
+  transition: border-color var(--motion-button-duration) var(--motion-button-ease), background-color var(--motion-button-duration) var(--motion-button-ease);
+}
+
+.suite-card:is(:hover, :focus-within) {
+  border-color: var(--border-hover);
+}
+
+.suite-activity-row:is(:hover, :focus-within) {
+  background: var(--surface-hover);
+  border-color: var(--border-hover);
+}
+
+.suite-card-actions .wellplace-button {
+  min-width: 0;
+  height: auto;
+  min-height: var(--spacing-control);
+  padding-inline: var(--space-button-inline-sm);
+  white-space: normal;
+  flex-wrap: wrap;
+}
+
+.suite-activity-list:focus-visible {
+  outline: calc(var(--spacing) / 2) solid var(--border-hover);
+  outline-offset: var(--spacing);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .suite-card,
+  .suite-activity-row,
+  .suite-dialog *,
+  .suite-workspace *,
+  .suite-popup * {
+    transition: none;
+  }
+}
+
+.suite-dialog [data-slot="textarea"] {
+  resize: none;
+}
+
+.reception-booking-block { container-type: inline-size; }
+.reception-booking-contact { display: none; }
+@container (min-width: 18rem) {
+  .reception-booking-contact { display: block; }
+}
+.reception-menu { border: 1px solid var(--border-strong); }
+.reception-menu :is([role="menuitem"], [role="option"]) {
+  min-height: var(--spacing-tap);
+  gap: calc(var(--spacing) * 2);
+  padding-inline: calc(var(--spacing) * 3);
+  cursor: pointer;
+}
+.reception-menu :is([role="menuitem"], [role="option"]):is([data-highlighted], :focus-visible) {
+  background: var(--surface-active);
+  color: var(--text-primary);
+}
+.reception-entry-actions[data-slot="dialog-footer"] {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: calc(var(--spacing) * 2);
+}
+.reception-entry-actions[data-slot="dialog-footer"] > .wellplace-button {
+  width: 100%;
+  height: auto;
+  min-height: var(--spacing-tap);
+  padding: calc(var(--spacing) * 2);
+  margin: 0;
+  white-space: normal;
+}
+.reception-front { --measure-timeline-lane: var(--measure-reception-lane-compact); --measure-reception-timeline-min: var(--measure-reception-track-min); }
+@media (min-width: 1280px) { .reception-front { --measure-timeline-lane: var(--measure-reception-lane-wide); } }
+
+.reception-month-day:nth-child(7n) { border-right: 0; }
+.reception-month-day:not(:disabled):hover { background: var(--surface-hover); }
+.reception-date-picker [data-slot="tabs-trigger"] { min-height: var(--spacing-tap); }
+@media (prefers-reduced-motion: reduce) {
+  .reception-entry-dialog *, .reception-menu * { transition: none; animation: none; }
+}
+
+.density-console .wellplace-button:is(.reception-week-cell, .reception-month-day)[data-variant] {
+  --marketing-button-border: var(--border);
+  border-color: var(--border);
+}
+.density-console .wellplace-button.reception-month-day:nth-child(7n) { border-right: 0; }
+.density-console .wellplace-button.reception-week-cell[data-variant] { border-width: 0 1px 0 0; }
+.density-console .wellplace-button.reception-month-day[data-variant] { border-width: 0 1px 1px 0; }
+.density-console .wellplace-button.reception-month-day:nth-child(7n) { border-right-width: 0; }
+.reception-desk-actions > .wellplace-button {
+  min-width: 0;
+  height: auto;
+  min-height: var(--spacing-tap);
+  white-space: normal;
+  padding-inline: calc(var(--spacing) * 2);
+}
+
+.density-console:has([data-console="reception"]) .wellplace-button[data-variant="ghost"]:not([data-hover="sweep"]):not([data-size^="icon"]):not(.reception-buffer-trigger):not(.theme-switch) {
+  --marketing-button-fill: color-mix(in srgb, var(--text-primary) 8%, transparent);
+  --marketing-button-hover-ink: var(--text-primary);
+}
+.density-console:has([data-console="reception"]) .wellplace-button[data-variant="ghost"]:not([data-hover="sweep"]):not([data-size^="icon"]):not(.reception-buffer-trigger):not(.theme-switch):not(:disabled):active {
+  background: color-mix(in srgb, var(--text-primary) 14%, transparent);
+}
+.density-console .wellplace-button.reception-booking-trigger[data-variant]:is(:hover, :focus-visible, :active) {
+  background: transparent;
+  border-color: transparent;
+}
+.reception-booking-trigger > span {
+  transition: box-shadow var(--motion-button-duration) var(--motion-button-ease);
+}
+.reception-booking-trigger:is(:hover, :focus-visible) > span {
+  box-shadow: inset 0 0 0 1px currentColor;
+}
+
+[data-reception-dragging="true"] .reception-booking-trigger > span {
+  box-shadow: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .reception-drag-entry { transition: transform var(--motion-button-duration) var(--motion-button-ease); }
+}
+
+.wellplace-button[data-variant][data-size^="icon"]:not([data-day]):not(.theme-switch):is(:hover, :focus-visible, :active, [aria-expanded="true"]) {
+  background: var(--marketing-button-base);
+  border-color: var(--marketing-button-border);
+  box-shadow: none;
+}
+
+[data-size^="icon"][data-variant="ghost"]:not([data-day]):not(.wellplace-button):is(:hover, :focus-visible, :active, [aria-expanded="true"]) {
+  background: transparent;
+}
+
+.reception-buffer-trigger[data-slot="button"] {
+  position: absolute;
+  border-left-width: 0;
+}
+
+.density-console .wellplace-button.reception-buffer-trigger[data-variant],
+.density-console .wellplace-button.reception-buffer-trigger[data-variant]:is(:hover, :focus-visible, :active) {
+  background-color: var(--surface-active);
+  background-image: repeating-linear-gradient(135deg, transparent, transparent var(--measure-reception-stripe), var(--border-strong) var(--measure-reception-stripe), var(--border-strong) calc(var(--measure-reception-stripe) * 2));
+  border-color: var(--border-strong);
+  box-shadow: none;
+}
+
+:is(button, a)[data-size^="icon"]:not([data-day]):focus-visible,
+.reception-buffer-trigger:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.density-console:has([data-reception-dialog]) [data-sonner-toast][data-visible="true"] {
+  pointer-events: auto;
+}
+
+.density-console:has([data-console="reception"]) [data-sonner-toast].wp-toast {
+  background: var(--surface-notice);
+  border-color: var(--border);
+  color: var(--text-primary);
+  align-items: flex-start;
+}
+
+.density-console:has([data-console="reception"]) [data-sonner-toast].wp-toast [data-icon] {
+  color: var(--wp-toast-accent);
+}
+
+.density-console:has([data-console="reception"]) [data-sonner-toast].wp-toast [data-close-button],
+.density-console:has([data-console="reception"]) [data-sonner-toast].wp-toast [data-close-button]:hover {
+  background: transparent;
+  border-color: transparent;
+  color: var(--text-secondary);
+  box-shadow: none;
+  top: calc(var(--spacing) * 2);
+  right: calc(var(--spacing) * 2);
+  transform: none;
+}
+
+.density-console:has([data-console="reception"]) [data-sonner-toast].wp-toast [data-content] {
+  padding-right: calc(var(--spacing) * 5);
+}
+
+:is([data-console="reception"], [data-reception-dialog]) [data-slot="field"] {
+  gap: calc(var(--spacing) * 2);
+  color: var(--text-primary);
+}
+
+:is([data-console="reception"], [data-reception-dialog]) :is([data-slot="input"], [data-slot="textarea"], [data-slot="select-trigger"])[aria-invalid="true"] {
+  border-color: var(--border-interactive);
+  box-shadow: none;
+  --tw-ring-color: transparent;
+}
+
+:is([data-console="reception"], [data-reception-dialog]) [data-slot="field"]:is([data-invalid="true"], :has([aria-invalid="true"])) > [data-slot="field-label"],
+:is([data-console="reception"], [data-reception-dialog]) [data-slot="field-set"][data-invalid="true"] > [data-slot="field-legend"] {
+  color: var(--danger-ink);
+}
+
+:is([data-console="reception"], [data-reception-dialog]) .reception-hint:not([role="status"]),
+:is([data-console="reception"], [data-reception-dialog]) [data-slot="field-error"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+:is([data-console="reception"], [data-reception-dialog]) textarea {
+  field-sizing: content;
+  overflow: hidden;
+  resize: none;
+}
+
+[data-reception-dialog] [data-slot="dialog-footer"] {
+  gap: calc(var(--spacing) * 3);
+  align-items: center;
+}
+
+[data-reception-dialog] [data-slot="dialog-footer"] > button {
+  min-height: var(--spacing-tap);
+  justify-content: center;
+}
+
+[data-reception-dialog][data-slot="dialog-content"] {
+  width: calc(100% - var(--spacing) * 8);
+}
+
+:is([data-console="reception"], [data-reception-dialog]) [data-slot="select-trigger"] {
+  min-height: var(--spacing-tap);
+}
+
+:is([data-console="reception"], [data-reception-dialog]) :is(button, a)[data-size^="icon"]:not([data-day]):not(.theme-switch) {
+  --marketing-button-fill: transparent;
+  --marketing-button-hover-ink: var(--text-primary);
+}
+
+:is([data-console="reception"], [data-reception-dialog]) :is(input, textarea, [data-slot="select-trigger"])[aria-invalid="true"]:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+[data-reception-dialog] [data-slot="alert"] {
+  background: var(--surface-notice);
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+
+:is([data-console="reception"], [data-reception-dialog]) [data-slot="input-group"]:has([aria-invalid="true"]) {
+  border-color: var(--border-interactive);
+  box-shadow: none;
+  --tw-ring-color: transparent;
+}
+
+:is([data-console="reception"], [data-reception-dialog]) [data-slot="input-group"]:has(:focus-visible) {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.density-console:has([data-console="manage"]) {
+  --control-h-touch: var(--control-h-console);
+}
+
+.density-console:has([data-console="manage"]) :is(
+    [data-slot="input"]:not([type="file"]),
+    [data-slot="select-trigger"],
+    [data-slot="input-group"]:not(:has(> textarea, > [data-align^="block"]))
+  ) {
+  height: var(--control-h-console);
+  min-height: var(--control-h-console);
+}
+
+.density-console:has([data-console="manage"]) :is(
+    [data-slot="input"],
+    [data-slot="textarea"],
+    [data-slot="select-trigger"],
+    [data-slot="input-group-control"]
+  ) {
+  font-size: var(--type-console-body);
+  line-height: var(--type-console-body-lh);
+}
+
+.density-console:has([data-console="manage"]) :is(
+    [data-slot="input"],
+    [data-slot="textarea"],
+    [data-slot="select-trigger"]:not([data-filtered]),
+    [data-slot="input-group"]
+  ):not(:disabled):not([aria-invalid="true"]):not(:has([aria-invalid="true"])):not(:focus-within):hover {
+  border-color: var(--border-interactive-hover);
+}
+
+:where(.density-console:has([data-console="manage"])) :where(
+    [data-slot="input"]:not(:disabled),
+    [data-slot="textarea"]:not(:disabled),
+    [data-slot="select-trigger"]:not(:disabled),
+    [data-slot="input-group"]:not(:has(:disabled))
+  ) {
+  background-color: transparent;
+}
+
+.density-console:has([data-console="manage"]) :is(
+    [data-slot="input"],
+    [data-slot="textarea"],
+    [data-slot="select-trigger"],
+    [data-slot="input-group"]
+  ):not(:disabled).bg-surface-raised {
+  background-color: var(--surface-raised);
+}
+
+.density-console:has([data-console="manage"]) :is(
+    [data-slot="input"],
+    [data-slot="textarea"],
+    [data-slot="select-trigger"],
+    [data-slot="input-group"]
+  ):not(:disabled).bg-surface-base {
+  background-color: var(--surface-base);
+}
+
+.density-console:has([data-console="manage"]) [data-slot="select-trigger"]:not(:disabled):hover {
+  background-color: var(--surface-hover);
+}
+
+.density-console:has([data-console="manage"]) .wellplace-button:not(.theme-switch):focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.density-console:has([data-console="manage"]) .wellplace-button[data-variant="outline"][data-hover="simple"]:not([data-size^="icon"]):not(.theme-switch):not(:disabled):not([aria-disabled="true"]):is(:hover, :focus-visible) {
+  border-color: var(--border-interactive-hover);
+}
+
+.density-console:has([data-console="manage"]) .wellplace-button[data-size^="icon"]:is([data-variant="ghost"], [data-variant="outline"]):not([data-tone]):not(.theme-switch):not(.console-input-clear) {
+  --marketing-button-hover-ink: var(--brand);
+}
+
+.density-console:has([data-console="manage"]) .wellplace-button[data-size^="icon"]:is([data-variant="ghost"], [data-variant="outline"]):not([data-tone]):not(.theme-switch):not(.console-input-clear):is([data-state$="open"], [aria-expanded="true"]) {
+  color: var(--brand);
+}
+
+.density-console:has([data-console="manage"]) .wellplace-button[data-size^="icon"][data-variant="outline"]:not([data-tone]):not(.theme-switch):not(:disabled):not([aria-disabled="true"]):is(:hover, :focus-visible, [aria-expanded="true"]) {
+  border-color: var(--border-interactive-hover);
+}
+
+.density-console:has([data-console="manage"]) :is(
+    [data-slot="dialog-footer"],
+    [data-slot="alert-dialog-footer"],
+    [data-slot="sheet-footer"]
+  ) > :is(.wellplace-button, [data-slot="button"]) {
+  min-width: min(var(--measure-dialog-action), 100%);
+}
+
+.console-page-header {
+  container: console-page-header / inline-size;
+}
+
+.console-page-meta {
+  clip-path: inset(
+    calc(var(--measure-meta-dot) * -0.5)
+    calc(var(--measure-meta-dot) * -0.5)
+    calc(var(--measure-meta-dot) * -0.5)
+    calc(var(--measure-meta-dot) * -0.25)
+  );
+}
+
+.console-page-meta-list {
+  margin-inline-start: calc(var(--measure-meta-dot) * -1);
+}
+
+.console-page-meta-dot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: var(--measure-meta-dot);
+  text-align: center;
+}
+
+@container console-page-header (width < 48rem) {
+  .console-page-actions:has(> :nth-child(2)) {
+    flex-basis: 100%;
+  }
+
+  .console-page-actions:has(> :nth-child(2)) > * {
+    flex: 1 1 auto;
+  }
+
+  .console-page-actions:has(> :nth-child(3)) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--measure-page-action)), 1fr));
+  }
+
+  .console-page-actions:has(> :nth-child(2)) > .wellplace-button,
+  .console-page-actions:has(> :nth-child(2)) > * > .wellplace-button {
+    width: 100%;
+  }
+}
+
+.theme-switch.wellplace-button[data-variant]:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+@media (width < 30rem) {
+  .suite-dialog [data-slot="dialog-footer"] {
+    flex-direction: column-reverse;
+  }
+
+  .suite-dialog [data-slot="dialog-footer"] > .wellplace-button {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
+.message-editor-rail {
+  max-height: 42dvh;
+}
+
+.message-inline-canvas [role="textbox"] {
+  min-height: var(--tap-min);
+  border-color: transparent;
+  background: transparent;
+  padding: 0;
+  font-size: var(--text-body);
+}
+
+@media (width >= 48rem) {
+  .message-editor-rail { max-height: none; }
+}
+
+@media (width < 48rem) {
+  .site-transition-logo { --wordmark-h: 4rem; }
+}
+
+/* [§Mobile implementation 5] Keep the approved sticky action bar,
+   releasing it for active fields, validation messages and open selectors. */
+@media (width < 64rem) {
+  .booking-widget-panel:has(:is(input, textarea, select, [role="combobox"], [role="checkbox"]):focus, [aria-invalid="true"], [aria-expanded="true"]) .booking-widget-actions {
+    position: static;
+  }
+}
+
+/* [§Owner responsive correction, 15 Sep] Restore the mobile photo carousel. */
+.gallery-mobile-slide { position: relative; z-index: 0; }
+.gallery-mobile-slide[data-active] { z-index: 2; }
+.gallery-mobile-card {
+  opacity: .38;
+  filter: brightness(.48) saturate(.72);
+  transform: scale(.84);
+  transition: filter var(--motion-gallery-depth-duration) var(--motion-card-flip-ease), opacity var(--motion-gallery-depth-duration) var(--motion-card-flip-ease), transform var(--motion-gallery-depth-duration) var(--motion-card-flip-ease);
+}
+.gallery-mobile-card[data-active] { opacity: 1; filter: none; transform: scale(1.08); }
+.gallery-mobile-carousel .gallery-mobile-image { width: 100%; height: 100%; }
+@media (prefers-reduced-motion: reduce) {
+  .gallery-mobile-card { transition: none; }
+}
