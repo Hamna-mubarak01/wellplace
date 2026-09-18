@@ -954,8 +954,9 @@
     backdrop-filter: blur(var(--blur-booking-edge-glass));
     box-shadow: var(--shadow-card-hover);
   }
+}
 
-  .wellplace-button.booking-edge-button::before {
+.wellplace-button.booking-edge-button::before {
   top: var(--measure-booking-edge-media-h);
   z-index: 1;
   transform: scaleY(0);
