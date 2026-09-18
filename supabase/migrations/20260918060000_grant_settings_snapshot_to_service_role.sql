@@ -1,0 +1,11 @@
+-- The server-side admin client reads spam-protection limits out of
+-- public.settings_snapshot before it will accept a waitlist or booking
+-- submission (src/lib/db/queries/rate-limit-settings.ts). Every other object
+-- that client touches is already granted to service_role; this view was not,
+-- so on a hosted project the read fails with 42501 and the submission is
+-- refused with a generic error.
+--
+-- service_role is server-only and never reaches the browser, and it already
+-- executes the guest checkout, payment settlement and document RPCs. anon and
+-- authenticated are untouched, so the §10.2 boundary is unchanged [INV-01].
+grant select on public.settings_snapshot to service_role;
