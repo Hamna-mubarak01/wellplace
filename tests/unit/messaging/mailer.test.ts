@@ -106,3 +106,25 @@ describe("the SMTP transport", () => {
     expect(await adapter.send(message)).toMatchObject({ ok: false, reason: "rejected" });
   });
 });
+
+describe("[regression] Gmail app passwords are displayed with spaces", () => {
+  it("strips the grouping spaces so authentication is not rejected", () => {
+    const base = { SMTP_HOST: "smtp.gmail.com", SMTP_USER: "demo@gmail.test" };
+
+    expect(readSmtpSettings({ ...base, SMTP_PASSWORD: "abcd efgh ijkl mnop" })?.pass).toBe(
+      "abcdefghijklmnop",
+    );
+    expect(readSmtpSettings({ ...base, SMTP_PASSWORD: "  abcd efgh ijkl mnop  " })?.pass).toBe(
+      "abcdefghijklmnop",
+    );
+    expect(readSmtpSettings({ ...base, SMTP_PASSWORD: "abcdefghijklmnop" })?.pass).toBe(
+      "abcdefghijklmnop",
+    );
+  });
+
+  it("still treats an all-whitespace password as not configured", () => {
+    expect(
+      readSmtpSettings({ SMTP_HOST: "smtp.gmail.com", SMTP_USER: "demo@gmail.test", SMTP_PASSWORD: "   " }),
+    ).toBeNull();
+  });
+});

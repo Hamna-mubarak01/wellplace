@@ -45,6 +45,27 @@ const schema = z.object({
   tiktokUrl: z.url().default(DEFAULT_SOCIAL_URLS.tiktok),
 });
 
+/**
+ * A social link is decoration in an email footer. A malformed one must not take
+ * down booking confirmations, invoices and the waitlist with it, so an
+ * unusable value is reported once and then ignored in favour of the default.
+ * A missing scheme is the common case ("www.instagram.com"), so try https first.
+ */
+function optionalUrl(raw: string | undefined, name: string): string | undefined {
+  const value = raw?.trim();
+  if (!value) return undefined;
+  if (z.url().safeParse(value).success) return value;
+
+  const prefixed = `https://${value}`;
+  if (z.url().safeParse(prefixed).success) {
+    console.warn(`[email] ${name} has no scheme — reading it as ${prefixed}`);
+    return prefixed;
+  }
+
+  console.warn(`[email] ${name} is not a usable URL and was ignored: ${value}`);
+  return undefined;
+}
+
 const QUOTED = /[()<>@,;:\\".\[\]]/;
 
 export function formatSender(name: string | undefined, address: string): string {
@@ -69,8 +90,8 @@ export function emailConfig(): EmailConfig {
     operationsTo: process.env.EMAIL_OPERATIONS_TO || undefined,
     assetBaseUrl: process.env.EMAIL_ASSET_BASE_URL || undefined,
     consoleUrl: process.env.EMAIL_CONSOLE_URL || undefined,
-    instagramUrl: process.env.SOCIAL_INSTAGRAM_URL || undefined,
-    tiktokUrl: process.env.SOCIAL_TIKTOK_URL || undefined,
+    instagramUrl: optionalUrl(process.env.SOCIAL_INSTAGRAM_URL, "SOCIAL_INSTAGRAM_URL"),
+    tiktokUrl: optionalUrl(process.env.SOCIAL_TIKTOK_URL, "SOCIAL_TIKTOK_URL"),
   });
 
   if (!parsed.success) {

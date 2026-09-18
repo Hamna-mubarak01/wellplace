@@ -18,7 +18,8 @@ export interface SmtpSettings {
 export function readSmtpSettings(env: EnvLike): SmtpSettings | null {
   const host = env.SMTP_HOST?.trim();
   const user = env.SMTP_USER?.trim();
-  const pass = env.SMTP_PASSWORD?.trim();
+  // Gmail displays app passwords in groups of four; the spaces are not part of it.
+  const pass = env.SMTP_PASSWORD?.replace(/\s+/g, "");
   if (!host || !user || !pass) return null;
 
   const port = Number(env.SMTP_PORT?.trim() || "587");

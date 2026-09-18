@@ -120,3 +120,31 @@ describe("consoleUrl — the target of the internal 'Open the waitlist' button",
     expect(emailConfig().consoleUrl).toBe("https://wellplace.example/manage/waitlist");
   });
 });
+
+describe("[OUR CHOICE] an optional footer link never takes down transactional email", () => {
+  it("reads a social URL that is missing its scheme, rather than throwing", () => {
+    process.env.SOCIAL_INSTAGRAM_URL = "www.instagram.com";
+    process.env.SOCIAL_TIKTOK_URL = "www.tiktok.com";
+    resetEmailConfigCache();
+
+    expect(() => emailConfig()).not.toThrow();
+    expect(emailConfig().instagramUrl).toBe("https://www.instagram.com");
+    expect(emailConfig().tiktokUrl).toBe("https://www.tiktok.com");
+  });
+
+  it("ignores a social URL that cannot be salvaged, keeping the default", () => {
+    process.env.SOCIAL_INSTAGRAM_URL = "not a url at all";
+    resetEmailConfigCache();
+
+    expect(() => emailConfig()).not.toThrow();
+    expect(emailConfig().instagramUrl).toMatch(/^https:\/\//);
+  });
+
+  it("[regression] booking, invoice and waitlist mail all read this config, so it must not throw", () => {
+    for (const bad of ["www.instagram.com", "instagram.com/wellplace", "", "   ", "http//broken"]) {
+      process.env.SOCIAL_INSTAGRAM_URL = bad;
+      resetEmailConfigCache();
+      expect(() => emailConfig(), `SOCIAL_INSTAGRAM_URL=${JSON.stringify(bad)}`).not.toThrow();
+    }
+  });
+});

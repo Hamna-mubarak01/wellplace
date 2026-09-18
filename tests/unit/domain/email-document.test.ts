@@ -588,7 +588,7 @@ describe("§13 — the link colour cannot break out of the style attribute", () 
 describe("§13 — only https, mailto and a bare variable may be stored as a link", () => {
   it.each([
     ["an https address", "https://wellplace.example/book"],
-    ["an https address in capitals", "HTTPS://WELLPLACE.AE/BOOK"],
+    ["an https address in capitals", "HTTPS://WELLPLACE.EXAMPLE/BOOK"],
     ["an https address with mixed case scheme", "HtTpS://wellplace.example"],
     ["an https address with padding", "  https://wellplace.example  "],
     ["a mailto address", "mailto:hello@wellplace.example"],
@@ -601,7 +601,7 @@ describe("§13 — only https, mailto and a bare variable may be stored as a lin
 
   it.each([
     ["plain http", "http://wellplace.example"],
-    ["http in capitals", "HTTP://WELLPLACE.AE"],
+    ["http in capitals", "HTTP://WELLPLACE.EXAMPLE"],
     ["a javascript url", "javascript:alert(1)"],
     ["a javascript url in mixed case", "JaVaScRiPt:alert(1)"],
     ["a javascript url with padding", "   javascript:alert(1)   "],
